@@ -1,0 +1,26 @@
+{
+  "name": "@cms/content",
+  "version": "1.0.0",
+  "description": "Định dạng nội dung của Ecomcx Nexus CMS: kiểu dữ liệu, schema khối lõi, chuẩn hoá, nâng phiên bản và bộ fixture hợp đồng — dùng chung cho trình soạn, website và máy chủ, không phụ thuộc trình soạn nào.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    "./fixtures/*": "./fixtures/*",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "fixtures", "README.md", "LICENSE"],
+  "sideEffects": false,
+  "repository": { "type": "git", "url": "git+https://github.com/Ecomcx-Jsc/ecomcx-nexus-content.git" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "npm run build",
+    "test": "tsc -p tsconfig.test.json && node --test .test-build/test/"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.1",
+    "typescript": "5.9.3"
+  }
+}
