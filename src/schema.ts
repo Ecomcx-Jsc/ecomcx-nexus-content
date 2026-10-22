@@ -61,6 +61,18 @@ export const CORE_NODES: Record<string, NodeSpec> = {
   tableHeader: { attrs: { colspan: i({ min: 1, default: 1 }), rowspan: i({ min: 1, default: 1 }), colwidth: { type: "json" } } },
   tableCell: { attrs: { colspan: i({ min: 1, default: 1 }), rowspan: i({ min: 1, default: 1 }), colwidth: { type: "json" } } },
   youtube: { attrs: { src: url(), start: i({ min: 0 }), width: n({ min: 1 }), height: n({ min: 1 }) } },
+  // Bố cục (1.2): cột, nhóm, hộp lưu ý chứa khối khác; nút; nhúng theo đường dẫn (embedInfo)
+  columns: { attrs: { verticalAlign: s({ enum: ["top", "center", "bottom"] }), stack: b({ default: true }) } },
+  column: { attrs: { width: n({ min: 5, max: 100 }) } },
+  group: { attrs: { background: s(), textColor: s(), padding: s({ enum: ["none", "small", "medium", "large"], default: "medium" }) } },
+  callout: { attrs: { tone: s({ enum: ["info", "success", "warning", "danger"], default: "info" }), title: s() } },
+  button: {
+    attrs: {
+      text: s(), href: url(), target: s(), rel: s(),
+      variant: s({ enum: ["primary", "secondary", "outline"], default: "primary" }), align: s({ enum: ["left", "center", "right"] }),
+    },
+  },
+  embed: { attrs: { url: url(), caption: s() } },
 };
 
 export const CORE_MARKS: Record<string, NodeSpec> = {

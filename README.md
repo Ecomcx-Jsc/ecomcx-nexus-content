@@ -26,11 +26,15 @@ Khác WordPress (Gutenberg lưu HTML do hàm `save()` sinh ra): CMS lưu **dữ 
 ] }
 ```
 
-- Khối lõi và thuộc tính: `CORE_NODES`, `CORE_MARKS` trong `src/schema.ts` (đoạn, tiêu đề, danh sách, danh sách việc, trích dẫn, mã, ảnh, bộ ảnh, video, âm thanh, tệp, bảng, YouTube; đậm, nghiêng, gạch chân, gạch ngang, mã, chỉ số trên/dưới, tô nền, màu chữ, liên kết).
+- Khối lõi và thuộc tính: `CORE_NODES`, `CORE_MARKS` trong `src/schema.ts` (đoạn, tiêu đề, danh sách, danh sách việc, trích dẫn, mã, ảnh, bộ ảnh, video, âm thanh, tệp, bảng, YouTube; từ 1.2: cột `columns` > `column`, nhóm `group`, hộp lưu ý `callout`, nút `button`, nhúng `embed`; đậm, nghiêng, gạch chân, gạch ngang, mã, chỉ số trên/dưới, tô nền, màu chữ, liên kết).
 - `null` = không có: thuộc tính null không được lưu. Thuộc tính khối lõi sai kiểu được ép (`"3"` → `3`, kẹp min/max) hoặc bỏ.
 - **Khối / nút lạ được giữ nguyên** (khối của plugin, kể cả khi plugin đã tắt) — website bỏ qua khối không có renderer, nút lạ trong nội dung soạn thảo vẫn hiện phần chữ bên trong.
 - Giới hạn: lồng tối đa 64 cấp, tối đa 100 000 nút một bài.
 - `version` tăng khi đổi cấu trúc, kèm hàm nâng cấp (`src/migrate.ts`) — bài lưu bằng bản cũ được nâng khi đọc.
+
+## Nhúng theo đường dẫn — `embedInfo`
+
+Khối `embed` chỉ lưu `url` (+ `caption`). `embedInfo(url)` nhận ra nhà cung cấp trong danh sách (YouTube, Vimeo, Loom, Spotify, SoundCloud, TikTok, X, Instagram, Facebook video, CodePen, Figma, Google Maps dạng embed) và **tự dựng** địa chỉ khung từ mã trong đường dẫn — không dùng HTML nhúng do người dùng dán, nên bài viết không chèn được khung tới trang tuỳ ý. Không nhận ra → `null`, website hiện liên kết thường. Trình soạn (xem trước) và website dùng chung hàm này.
 
 ## Cài
 

@@ -5,6 +5,8 @@ export function nodeText(node) {
         return node.text ?? "";
     if (node.type === "hardBreak")
         return "\n";
+    if (node.type === "button")
+        return typeof node.attrs?.text === "string" && node.attrs.text ? node.attrs.text + "\n" : "";
     return (node.content ?? []).map(nodeText).join("") + (BLOCK_BREAK.has(node.type) ? "\n" : "");
 }
 /** Chữ thuần của cả bài (tìm kiếm, tóm tắt, đếm từ). Khối HTML bỏ thẻ; khối plugin bỏ qua. */

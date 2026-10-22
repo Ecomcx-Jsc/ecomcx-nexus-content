@@ -1,0 +1,238 @@
+{
+  "name": "layout-blocks",
+  "note": "Khối bố cục (1.2): cột, nhóm, hộp lưu ý, nút, nhúng — ép kiểu (\"60\" → 60, \"false\" → false), kẹp độ rộng cột ≤ 100, bỏ giá trị ngoài danh sách (tone \"loud\", align \"middle\") và null",
+  "input": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "columns",
+              "attrs": {
+                "verticalAlign": "center",
+                "stack": "false"
+              },
+              "content": [
+                {
+                  "type": "column",
+                  "attrs": {
+                    "width": "60"
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Cột trái"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "button",
+                      "attrs": {
+                        "text": "Mua ngay",
+                        "href": "https://shop.vn/a",
+                        "variant": "outline",
+                        "align": "middle",
+                        "target": null
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "column",
+                  "attrs": {
+                    "width": 150
+                  },
+                  "content": [
+                    {
+                      "type": "callout",
+                      "attrs": {
+                        "tone": "loud",
+                        "title": "Lưu ý"
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Hàng có hạn"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "attrs": {
+                "background": "#f5f5f4",
+                "padding": "large",
+                "textColor": null
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Trong nhóm"
+                    }
+                  ]
+                },
+                {
+                  "type": "embed",
+                  "attrs": {
+                    "url": "https://vimeo.com/76979871",
+                    "caption": "Video giới thiệu"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "attrs": {
+                "tone": "warning"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Cẩn thận"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "expected": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "columns",
+              "attrs": {
+                "verticalAlign": "center",
+                "stack": false
+              },
+              "content": [
+                {
+                  "type": "column",
+                  "attrs": {
+                    "width": 60
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Cột trái"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "button",
+                      "attrs": {
+                        "text": "Mua ngay",
+                        "href": "https://shop.vn/a",
+                        "variant": "outline"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "column",
+                  "attrs": {
+                    "width": 100
+                  },
+                  "content": [
+                    {
+                      "type": "callout",
+                      "attrs": {
+                        "title": "Lưu ý"
+                      },
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Hàng có hạn"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "attrs": {
+                "background": "#f5f5f4",
+                "padding": "large"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Trong nhóm"
+                    }
+                  ]
+                },
+                {
+                  "type": "embed",
+                  "attrs": {
+                    "url": "https://vimeo.com/76979871",
+                    "caption": "Video giới thiệu"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "attrs": {
+                "tone": "warning"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Cẩn thận"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
