@@ -42,7 +42,7 @@ npm install github:Ecomcx-Jsc/ecomcx-nexus-content#semver:^1
 "dependencies": { "@cms/content": "github:Ecomcx-Jsc/ecomcx-nexus-content#semver:^1" }
 ```
 
-`#semver:^1` = mọi bản 1.x (tag `v1.*`): `npm update @cms/content` lấy bản mới nhất, bản 2.0 (đổi làm vỡ API) phải chủ động đổi. `package-lock.json` ghi đúng commit đã cài. Khi cài npm tự build `dist/` (script `prepare`, chạy cả khi có `--ignore-scripts`). Không phụ thuộc thư viện nào lúc chạy — dùng được trong trình duyệt, Node, Next.js, công cụ dòng lệnh.
+`#semver:^1` = mọi bản 1.x (tag `v1.*`): `npm update @cms/content` lấy bản mới nhất, bản 2.0 (đổi làm vỡ API) phải chủ động đổi. `package-lock.json` ghi đúng commit đã cài. `dist/` được commit sẵn trong repo (npm 11 bỏ qua `prepare` của gói GitHub khi cài với `--ignore-scripts` — Builder của CMS cài như vậy). Không phụ thuộc thư viện nào lúc chạy — dùng được trong trình duyệt, Node, Next.js, công cụ dòng lệnh.
 
 ## Dùng
 
@@ -71,7 +71,7 @@ contentText(doc);                                  // chữ thuần (tìm kiếm
 ```bash
 npm install
 npm test        # biên dịch + node --test
-npm run build   # dist/
+npm run build   # dist/ — commit cùng src/ (npm test báo lỗi nếu dist/ cũ)
 ```
 
 Phát hành: tăng `version` (MAJOR.MINOR.PATCH — chỉ tăng MAJOR khi làm vỡ API), commit, `git tag vX.Y.Z && git push --tags`; bên dùng chạy `npm update @cms/content`.
