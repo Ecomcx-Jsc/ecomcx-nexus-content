@@ -1,3 +1,4 @@
+import { blockNodeSpec, migrateBlockAttrs, type BlockDefinition } from "./block.js";
 import { migrateContent } from "./migrate.js";
 import { CORE_MARKS, CORE_NODES, normalizeAttrs, type NodeSpec } from "./schema.js";
 import { CONTENT_VERSION, type Block, type ContentDoc, type RichMark, type RichNode } from "./types.js";
@@ -7,7 +8,9 @@ export interface NormalizeOptions {
   maxDepth?: number;
   /** Số nút tối đa của một bài. Mặc định 100 000. */
   maxNodes?: number;
-  /** Mô tả thuộc tính của khối ngoài lõi (khối plugin đăng ký bằng defineBlock). */
+  /** Khối của plugin (defineBlock): ép kiểu thuộc tính + nâng phiên bản khối lưu bằng bản cũ. */
+  blocks?: readonly BlockDefinition[];
+  /** Mô tả thuộc tính của nút ngoài lõi (cấp thấp — khối plugin dùng `blocks`). */
   nodes?: Record<string, NodeSpec>;
   marks?: Record<string, NodeSpec>;
 }
@@ -29,7 +32,8 @@ const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 
 export function normalizeContent(input: unknown, options: NormalizeOptions = {}): NormalizeResult {
   const issues: string[] = [];
   const state = { count: 0, issues, maxDepth: options.maxDepth ?? 64, maxNodes: options.maxNodes ?? 100_000,
-    nodes: { ...CORE_NODES, ...options.nodes }, marks: { ...CORE_MARKS, ...options.marks } };
+    nodes: { ...CORE_NODES, ...options.nodes, ...Object.fromEntries((options.blocks ?? []).map((b) => [b.name, blockNodeSpec(b)])) },
+    marks: { ...CORE_MARKS, ...options.marks }, blocks: new Map((options.blocks ?? []).map((b) => [b.name, b])) };
 
   if (input == null) return { doc: empty(), issues };
   if (typeof input === "string") return { doc: { version: CONTENT_VERSION, blocks: input ? [{ id: "main", type: "html", data: { html: input } }] : [] }, issues };
@@ -47,7 +51,7 @@ export function normalizeContent(input: unknown, options: NormalizeOptions = {})
   return { doc: migrateContent({ version, blocks }, issues), issues };
 }
 
-type State = { count: number; issues: string[]; maxDepth: number; maxNodes: number; nodes: Record<string, NodeSpec>; marks: Record<string, NodeSpec> };
+type State = { count: number; issues: string[]; maxDepth: number; maxNodes: number; nodes: Record<string, NodeSpec>; marks: Record<string, NodeSpec>; blocks: Map<string, BlockDefinition> };
 
 function normalizeBlock(b: unknown, state: State): Block | null {
   if (!isObj(b) || typeof b.type !== "string" || !b.type || b.type.length > 100) { state.issues.push("dropped invalid block"); return null; }
@@ -81,7 +85,13 @@ function normalizeNode(node: unknown, depth: number, state: State): RichNode | n
   }
 
   const out: RichNode = { type: node.type };
-  const attrs = normalizeAttrs(node.attrs, state.nodes[node.type]?.attrs);
+  const def = state.blocks.get(node.type);
+  let raw = node.attrs;
+  if (def && def.version > 1) {
+    try { raw = migrateBlockAttrs(def, (isObj(raw) ? raw : {}) as Record<string, unknown>); }
+    catch (e) { state.issues.push(`block ${node.type}: migrate failed (${(e as Error).message}) — kept as is`); }
+  }
+  const attrs = normalizeAttrs(raw, state.nodes[node.type]?.attrs);
   if (attrs) out.attrs = attrs;
   if (Array.isArray(node.content)) {
     const children: RichNode[] = [];

@@ -4,3 +4,4 @@ export { normalizeContent, type NormalizeOptions, type NormalizeResult } from ".
 export { migrateContent } from "./migrate.js";
 export { contentText, nodeText, visitNodes, wordCount } from "./text.js";
 export { isSafeUrl, safeUrl } from "./url.js";
+export { BLOCK_VERSION_ATTR, blockDefaults, blockNodeSpec, defineBlock, migrateBlockAttrs, type AttrControl, type BlockAttrSpec, type BlockContent, type BlockDefinition, type BlockDefinitionInput } from "./block.js";

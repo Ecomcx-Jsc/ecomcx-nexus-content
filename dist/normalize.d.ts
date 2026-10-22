@@ -1,3 +1,4 @@
+import { type BlockDefinition } from "./block.js";
 import { type NodeSpec } from "./schema.js";
 import { type ContentDoc } from "./types.js";
 export interface NormalizeOptions {
@@ -5,7 +6,9 @@ export interface NormalizeOptions {
     maxDepth?: number;
     /** Số nút tối đa của một bài. Mặc định 100 000. */
     maxNodes?: number;
-    /** Mô tả thuộc tính của khối ngoài lõi (khối plugin đăng ký bằng defineBlock). */
+    /** Khối của plugin (defineBlock): ép kiểu thuộc tính + nâng phiên bản khối lưu bằng bản cũ. */
+    blocks?: readonly BlockDefinition[];
+    /** Mô tả thuộc tính của nút ngoài lõi (cấp thấp — khối plugin dùng `blocks`). */
     nodes?: Record<string, NodeSpec>;
     marks?: Record<string, NodeSpec>;
 }

@@ -1,3 +1,4 @@
+import { blockNodeSpec, migrateBlockAttrs } from "./block.js";
 import { migrateContent } from "./migrate.js";
 import { CORE_MARKS, CORE_NODES, normalizeAttrs } from "./schema.js";
 import { CONTENT_VERSION } from "./types.js";
@@ -11,7 +12,8 @@ const isObj = (v) => !!v && typeof v === "object" && !Array.isArray(v);
 export function normalizeContent(input, options = {}) {
     const issues = [];
     const state = { count: 0, issues, maxDepth: options.maxDepth ?? 64, maxNodes: options.maxNodes ?? 100_000,
-        nodes: { ...CORE_NODES, ...options.nodes }, marks: { ...CORE_MARKS, ...options.marks } };
+        nodes: { ...CORE_NODES, ...options.nodes, ...Object.fromEntries((options.blocks ?? []).map((b) => [b.name, blockNodeSpec(b)])) },
+        marks: { ...CORE_MARKS, ...options.marks }, blocks: new Map((options.blocks ?? []).map((b) => [b.name, b])) };
     if (input == null)
         return { doc: empty(), issues };
     if (typeof input === "string")
@@ -82,7 +84,17 @@ function normalizeNode(node, depth, state) {
         return marks ? { type: "text", text: node.text, marks } : { type: "text", text: node.text };
     }
     const out = { type: node.type };
-    const attrs = normalizeAttrs(node.attrs, state.nodes[node.type]?.attrs);
+    const def = state.blocks.get(node.type);
+    let raw = node.attrs;
+    if (def && def.version > 1) {
+        try {
+            raw = migrateBlockAttrs(def, (isObj(raw) ? raw : {}));
+        }
+        catch (e) {
+            state.issues.push(`block ${node.type}: migrate failed (${e.message}) — kept as is`);
+        }
+    }
+    const attrs = normalizeAttrs(raw, state.nodes[node.type]?.attrs);
     if (attrs)
         out.attrs = attrs;
     if (Array.isArray(node.content)) {

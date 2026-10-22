@@ -53,6 +53,28 @@ const { doc, issues } = normalizeContent(input);   // {version, blocks}, cây Ti
 contentText(doc);                                  // chữ thuần (tìm kiếm, tóm tắt)
 ```
 
+## Khối của plugin — `defineBlock`
+
+Khai báo một lần, dùng ở cả trình soạn (admin) lẫn website — đặt trong file dùng chung của plugin:
+
+```ts
+// blocks.ts
+import { defineBlock } from "@cms/content";
+export const callout = defineBlock({
+  name: "lien-he/callout", title: "Hộp lưu ý", icon: "info", keywords: "luu y callout", content: "blocks",
+  attributes: {
+    tone: { type: "string", enum: ["info", "warning"], enumLabels: ["Thông tin", "Cảnh báo"], default: "info", label: "Kiểu" },
+    title: { type: "string", label: "Tiêu đề" },
+  },
+});
+```
+
+- Admin (`@cms/admin-sdk`): `registerBlock(callout)` → trình soạn tự có mục slash menu, khung khối, form cài đặt sinh từ `attributes` (không viết TipTap).
+- Website (`@cms/theme-sdk`): `definePlugin({ blocks: { [callout.name]: Callout }, blockTypes: [callout] })` — `Callout` nhận `data` (thuộc tính đã chuẩn hoá) và `children` (nội dung bên trong).
+- `content`: `"none"` (khối nguyên), `"inline"` (một dòng chữ), `"blocks"` (chứa khối khác).
+- Đổi cấu trúc thuộc tính: tăng `version`, thêm `migrate[bản-cũ]` — bài đã lưu được nâng khi đọc (lưu kèm `_v`). Migrate lỗi → giữ nguyên dữ liệu.
+- Plugin tắt / gỡ: dữ liệu khối nằm nguyên trong bài; website hiện phần chữ bên trong (nếu có), bật lại là hiện như cũ.
+
 ## Hợp đồng
 
 `fixtures/*.json` — mỗi file `{ name, note, input, expected }`. Ba bên cùng chạy bộ này:

@@ -4,3 +4,4 @@ export { normalizeContent } from "./normalize.js";
 export { migrateContent } from "./migrate.js";
 export { contentText, nodeText, visitNodes, wordCount } from "./text.js";
 export { isSafeUrl, safeUrl } from "./url.js";
+export { BLOCK_VERSION_ATTR, blockDefaults, blockNodeSpec, defineBlock, migrateBlockAttrs } from "./block.js";
