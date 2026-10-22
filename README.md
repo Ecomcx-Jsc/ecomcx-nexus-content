@@ -59,7 +59,7 @@ contentText(doc);                                  // chữ thuần (tìm kiếm
 
 ## Khối của plugin — `defineBlock`
 
-Khai báo một lần, dùng ở cả trình soạn (admin) lẫn website — đặt trong file dùng chung của plugin:
+Khai báo một lần, dùng ở cả trình soạn (admin) lẫn website — đặt trong file dùng chung của plugin: Tên khối luôn có dạng `slug-plugin/tên` — tên không có `/` dành cho khối lõi (khối lõi mới có thể được thêm ở bản 1.x).
 
 ```ts
 // blocks.ts

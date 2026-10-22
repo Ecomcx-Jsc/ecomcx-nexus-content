@@ -38,9 +38,9 @@ test("giới hạn số nút", () => {
 });
 
 test("khối plugin khai báo thuộc tính (defineBlock) được ép kiểu như khối lõi", () => {
-  const { doc } = normalizeContent({ type: "doc", content: [{ type: "callout", attrs: { tone: "loud", count: "2" } }] },
-    { nodes: { callout: { attrs: { tone: { type: "string", enum: ["info", "warning"] }, count: { type: "integer" } } } } });
-  assert.deepEqual(doc.blocks[0].data.content[0], { type: "callout", attrs: { count: 2 } });
+  const { doc } = normalizeContent({ type: "doc", content: [{ type: "demo/callout", attrs: { tone: "loud", count: "2" } }] },
+    { nodes: { "demo/callout": { attrs: { tone: { type: "string", enum: ["info", "warning"] }, count: { type: "integer" } } } } });
+  assert.deepEqual(doc.blocks[0].data.content[0], { type: "demo/callout", attrs: { count: 2 } });
 });
 
 test("chữ thuần và đếm từ", () => {

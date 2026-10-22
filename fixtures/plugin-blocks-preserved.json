@@ -1,6 +1,6 @@
 {
   "name": "plugin-blocks-preserved",
-  "note": "Khối/nút của plugin (kể cả plugin đã tắt): giữ nguyên dữ liệu, chỉ bỏ thuộc tính null",
+  "note": "Khối/nút của plugin (tên có namespace slug/tên; kể cả plugin đã tắt): giữ nguyên dữ liệu, chỉ bỏ thuộc tính null",
   "input": {
     "version": 1,
     "blocks": [
@@ -20,7 +20,7 @@
               ]
             },
             {
-              "type": "callout",
+              "type": "demo/callout",
               "attrs": {
                 "tone": "warning",
                 "title": null,
@@ -96,7 +96,7 @@
               ]
             },
             {
-              "type": "callout",
+              "type": "demo/callout",
               "attrs": {
                 "tone": "warning",
                 "extra": {
