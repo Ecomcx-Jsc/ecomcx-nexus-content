@@ -35,14 +35,14 @@ Khác WordPress (Gutenberg lưu HTML do hàm `save()` sinh ra): CMS lưu **dữ 
 ## Cài
 
 ```bash
-npm install github:Ecomcx-Jsc/ecomcx-nexus-content#v1.0.0
+npm install github:Ecomcx-Jsc/ecomcx-nexus-content#semver:^1
 ```
 
 ```json
-"dependencies": { "@cms/content": "github:Ecomcx-Jsc/ecomcx-nexus-content#v1.0.0" }
+"dependencies": { "@cms/content": "github:Ecomcx-Jsc/ecomcx-nexus-content#semver:^1" }
 ```
 
-Ghim theo tag; khi cài npm tự build `dist/` (script `prepare`). Không phụ thuộc thư viện nào lúc chạy — dùng được trong trình duyệt, Node, Next.js, công cụ dòng lệnh.
+`#semver:^1` = mọi bản 1.x (tag `v1.*`): `npm update @cms/content` lấy bản mới nhất, bản 2.0 (đổi làm vỡ API) phải chủ động đổi. `package-lock.json` ghi đúng commit đã cài. Khi cài npm tự build `dist/` (script `prepare`, chạy cả khi có `--ignore-scripts`). Không phụ thuộc thư viện nào lúc chạy — dùng được trong trình duyệt, Node, Next.js, công cụ dòng lệnh.
 
 ## Dùng
 
@@ -74,4 +74,4 @@ npm test        # biên dịch + node --test
 npm run build   # dist/
 ```
 
-Phát hành: tăng `version`, commit, `git tag vX.Y.Z && git push --tags`; bên dùng đổi tag trong package.json.
+Phát hành: tăng `version` (MAJOR.MINOR.PATCH — chỉ tăng MAJOR khi làm vỡ API), commit, `git tag vX.Y.Z && git push --tags`; bên dùng chạy `npm update @cms/content`.
