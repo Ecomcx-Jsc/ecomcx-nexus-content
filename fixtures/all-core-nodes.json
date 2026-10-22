@@ -1,6 +1,6 @@
 {
   "name": "all-core-nodes",
-  "note": "Đủ mọi khối và định dạng lõi — đã chuẩn, chuẩn hoá không đổi gì",
+  "note": "Đủ mọi khối và định dạng lõi (kết hợp được trong trình soạn — mã không đi cùng định dạng khác) — đã chuẩn, chuẩn hoá không đổi gì",
   "input": {
     "version": 1,
     "blocks": [
@@ -72,7 +72,17 @@
                     },
                     {
                       "type": "strike"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " "
+                },
+                {
+                  "type": "text",
+                  "text": "mã",
+                  "marks": [
                     {
                       "type": "code"
                     }
@@ -451,7 +461,17 @@
                     },
                     {
                       "type": "strike"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " "
+                },
+                {
+                  "type": "text",
+                  "text": "mã",
+                  "marks": [
                     {
                       "type": "code"
                     }
