@@ -13,6 +13,7 @@
     --ecx-font-size-xl: 1.5rem; --ecx-font-size-2xl: 2rem; --ecx-font-size-3xl: 2.75rem; --ecx-font-size-4xl: 3.5rem;
     --ecx-color-primary: var(--primary, #2563eb); --ecx-color-muted: #6b7280; --ecx-color-surface: #f4f4f5;
     --ecx-color-white: #fff; --ecx-color-black: #111;
+    --ecx-font-family-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
   :where(.ecx-content) {

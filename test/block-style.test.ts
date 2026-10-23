@@ -49,3 +49,11 @@ test("style: nằm trong attrs của mọi khối (lõi + plugin), không hợp 
   assert.deepEqual(c[1].attrs, { title: "x", style: { margin: { base: "auto" } } });
   assert.deepEqual(c[2].attrs, { level: 2 });
 });
+
+test("style 1.8: kiểu chữ đầy đủ (phông preset, nghiêng, giãn chữ, trang trí, viết hoa, cao tối thiểu)", () => {
+  const s = normalizeStyle({ fontFamily: "heading", fontStyle: "italic", letterSpacing: { base: "0.05em", mobile: "1px" }, textDecoration: "underline",
+    textTransform: "uppercase", minHeight: "60vh", fontFamily2: "x" })!;
+  assert.deepEqual(s, { minHeight: { base: "60vh" }, fontFamily: "heading", letterSpacing: { base: "0.05em", mobile: "1px" }, fontStyle: "italic", textDecoration: "underline", textTransform: "uppercase" });
+  assert.equal(styleCss(s, "x"), ".x.x{min-height:60vh;letter-spacing:0.05em;font-family:var(--ecx-font-family-heading, inherit);font-style:italic;text-decoration:underline;text-transform:uppercase}@media (max-width:640px){.x.x{letter-spacing:1px}}");
+  assert.equal(normalizeStyle({ fontFamily: "Arial;}", textTransform: "shout", fontStyle: "oblique" }), undefined);
+});

@@ -1,6 +1,6 @@
 {
   "name": "block-styles",
-  "note": "Kiểu dáng khối (1.7): attrs.style của mọi khối — dạng gọn thành theo khổ (base/tablet/mobile), thứ tự khoá cố định, bỏ giá trị không hợp lệ (độ dài lạ, CSS chèn, khổ lạ, chuỗi thay cho object)",
+  "note": "Kiểu dáng khối (1.7, kiểu chữ 1.8): attrs.style của mọi khối — dạng gọn thành theo khổ (base/tablet/mobile), thứ tự khoá cố định, bỏ giá trị không hợp lệ (độ dài lạ, CSS chèn, khổ lạ, chuỗi thay cho object)",
   "input": {
     "version": 1,
     "blocks": [
@@ -118,6 +118,32 @@
                 "src": "/a.png",
                 "style": "padding:10px"
               }
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "style": {
+                  "textTransform": "uppercase",
+                  "fontStyle": "italic",
+                  "letterSpacing": {
+                    "base": "0.1em",
+                    "mobile": "2px"
+                  },
+                  "textDecoration": "line-through",
+                  "fontFamily": "heading",
+                  "minHeight": {
+                    "base": "50vh",
+                    "mobile": "auto"
+                  },
+                  "fontWeight": "950"
+                }
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Kiểu chữ"
+                }
+              ]
             }
           ]
         }
@@ -240,6 +266,31 @@
               "attrs": {
                 "src": "/a.png"
               }
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "style": {
+                  "minHeight": {
+                    "base": "50vh",
+                    "mobile": "auto"
+                  },
+                  "fontFamily": "heading",
+                  "letterSpacing": {
+                    "base": "0.1em",
+                    "mobile": "2px"
+                  },
+                  "fontStyle": "italic",
+                  "textDecoration": "line-through",
+                  "textTransform": "uppercase"
+                }
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Kiểu chữ"
+                }
+              ]
             }
           ]
         }

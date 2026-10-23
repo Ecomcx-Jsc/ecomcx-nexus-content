@@ -18,9 +18,15 @@ export interface BlockStyle {
     gap?: Responsive<string>;
     width?: Responsive<string>;
     maxWidth?: Responsive<string>;
+    minHeight?: Responsive<string>;
+    fontFamily?: string;
     fontSize?: Responsive<string>;
     lineHeight?: Responsive<number>;
+    letterSpacing?: Responsive<string>;
     fontWeight?: string;
+    fontStyle?: string;
+    textDecoration?: string;
+    textTransform?: string;
     textAlign?: Responsive<string>;
     color?: {
         text?: string;

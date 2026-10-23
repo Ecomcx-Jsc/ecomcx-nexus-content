@@ -16,9 +16,15 @@ export interface BlockStyle {
   gap?: Responsive<string>;
   width?: Responsive<string>;
   maxWidth?: Responsive<string>;
+  minHeight?: Responsive<string>;
+  fontFamily?: string;
   fontSize?: Responsive<string>;
   lineHeight?: Responsive<number>;
+  letterSpacing?: Responsive<string>;
   fontWeight?: string;
+  fontStyle?: string;
+  textDecoration?: string;
+  textTransform?: string;
   textAlign?: Responsive<string>;
   color?: { text?: string; background?: string };
   border?: { width?: string; style?: string; color?: string };
@@ -34,6 +40,10 @@ const WEIGHTS = ["300", "400", "500", "600", "700", "800", "900"];
 const ALIGNS = ["left", "center", "right", "justify"];
 const BORDER_STYLES = ["solid", "dashed", "dotted"];
 const HIDE = ["desktop", "tablet", "mobile"] as const;
+const FONT_STYLES = ["normal", "italic"];
+const DECORATIONS = ["none", "underline", "line-through"];
+const TRANSFORMS = ["none", "uppercase", "lowercase", "capitalize"];
+const preset = (v: unknown) => (typeof v === "string" && PRESET.test(v) ? v : undefined);
 
 const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 const size = (v: unknown) => (typeof v === "string" && (LENGTH.test(v) || PRESET.test(v)) ? v : undefined);
@@ -74,9 +84,15 @@ export function normalizeStyle(v: unknown): BlockStyle | undefined {
   set("gap", responsive(v.gap, size));
   set("width", responsive(v.width, size));
   set("maxWidth", responsive(v.maxWidth, size));
+  set("minHeight", responsive(v.minHeight, size));
+  set("fontFamily", preset(v.fontFamily));
   set("fontSize", responsive(v.fontSize, size));
   set("lineHeight", responsive(v.lineHeight, lineHeight));
+  set("letterSpacing", responsive(v.letterSpacing, size));
   set("fontWeight", oneOf(WEIGHTS)(typeof v.fontWeight === "number" ? String(v.fontWeight) : v.fontWeight));
+  set("fontStyle", oneOf(FONT_STYLES)(v.fontStyle));
+  set("textDecoration", oneOf(DECORATIONS)(v.textDecoration));
+  set("textTransform", oneOf(TRANSFORMS)(v.textTransform));
   set("textAlign", responsive(v.textAlign, oneOf(ALIGNS)));
   set("color", group(v.color, { text: color, background: color }));
   set("border", group(v.border, { width: size, style: oneOf(BORDER_STYLES), color }));
@@ -107,11 +123,17 @@ function declarations(style: BlockStyle): Record<Device, string[]> {
     const g = style.gap?.[d]; if (g !== undefined) out[d].push(`gap:${spacing(g)}`);
     const w = style.width?.[d]; if (w !== undefined) out[d].push(`width:${spacing(w)}`);
     const mw = style.maxWidth?.[d]; if (mw !== undefined) out[d].push(`max-width:${spacing(mw)}`);
+    const mh = style.minHeight?.[d]; if (mh !== undefined) out[d].push(`min-height:${spacing(mh)}`);
     const fs = style.fontSize?.[d]; if (fs !== undefined) out[d].push(`font-size:${fontSize(fs)}`);
     const lh = style.lineHeight?.[d]; if (lh !== undefined) out[d].push(`line-height:${lh}`);
+    const ls = style.letterSpacing?.[d]; if (ls !== undefined) out[d].push(`letter-spacing:${lit(ls) ? ls : `var(--ecx-letter-spacing-${ls})`}`);
     const ta = style.textAlign?.[d]; if (ta !== undefined) out[d].push(`text-align:${ta}`);
   }
+  if (style.fontFamily) out.base.push(`font-family:var(--ecx-font-family-${style.fontFamily}, inherit)`);
   if (style.fontWeight) out.base.push(`font-weight:${style.fontWeight}`);
+  if (style.fontStyle) out.base.push(`font-style:${style.fontStyle}`);
+  if (style.textDecoration) out.base.push(`text-decoration:${style.textDecoration}`);
+  if (style.textTransform) out.base.push(`text-transform:${style.textTransform}`);
   if (style.color?.text) out.base.push(`color:${colorValue(style.color.text)}`);
   if (style.color?.background) out.base.push(`background:${colorValue(style.color.background)}`);
   if (style.border?.width || style.border?.style || style.border?.color)
