@@ -1,6 +1,6 @@
 {
   "name": "basic-blocks",
-  "note": "Bộ khối cơ bản (1.9): mục lục, ảnh bìa, nhiều nút, khoảng trống, ảnh + chữ, trích dẫn nổi bật, chi tiết, HTML tuỳ chỉnh, mạng xã hội, văn bản định dạng sẵn — ép kiểu (\"70\" → 70, \"false\" → false), kẹp (maxLevel ≤ 4, width ≤ 80), bỏ giá trị ngoài danh sách (contentAlign \"middle\", size \"huge\")",
+  "note": "Bộ khối cơ bản (1.9, chân bảng 1.11): mục lục, ảnh bìa, nhiều nút, khoảng trống, ảnh + chữ, trích dẫn nổi bật, chi tiết, HTML tuỳ chỉnh, mạng xã hội, văn bản định dạng sẵn — ép kiểu (\"70\" → 70, \"false\" → false), kẹp (maxLevel ≤ 4, width ≤ 80), bỏ giá trị ngoài danh sách (contentAlign \"middle\", size \"huge\")",
   "input": {
     "version": 1,
     "blocks": [
@@ -153,6 +153,53 @@
                 {
                   "type": "text",
                   "text": "  giữ   khoảng trắng"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "attrs": {
+                "footer": "true",
+                "fixed": 1
+              },
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Hàng"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Tổng"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -310,6 +357,52 @@
                 {
                   "type": "text",
                   "text": "  giữ   khoảng trắng"
+                }
+              ]
+            },
+            {
+              "type": "table",
+              "attrs": {
+                "footer": true
+              },
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Hàng"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "Tổng"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }

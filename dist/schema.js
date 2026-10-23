@@ -33,7 +33,7 @@ export const CORE_NODES = {
     video: { attrs: { ...media, poster: url() } },
     audio: { attrs: { ...media } },
     file: { attrs: { ...media, size: n({ min: 0 }), embed: b({ default: true }), download: b() } },
-    table: {},
+    table: { attrs: { footer: b({ default: false }), fixed: b({ default: false }) } },
     tableRow: {},
     tableHeader: { attrs: { colspan: i({ min: 1, default: 1 }), rowspan: i({ min: 1, default: 1 }), colwidth: { type: "json" } } },
     tableCell: { attrs: { colspan: i({ min: 1, default: 1 }), rowspan: i({ min: 1, default: 1 }), colwidth: { type: "json" } } },
