@@ -205,3 +205,81 @@ export function collectStyles(styles) {
     }
     return [...seen.values()].join("");
 }
+// ---------------------------------------------------------------------------
+// Thuộc tính chung của khối (1.10): biến thể kiểu, neo, class riêng
+// ---------------------------------------------------------------------------
+const ANCHOR = /^[A-Za-z][\w-]{0,63}$/;
+const CLASS_TOKEN = /^-?[_a-zA-Z][\w-]{0,40}$/;
+/** Biến thể kiểu (`blockStyle`): tên preset → class `ecx-is-<tên>`. */
+export function normalizeBlockStyleName(v) {
+    return typeof v === "string" && /^[a-z][a-z0-9-]{0,30}$/.test(v) ? v : undefined;
+}
+/** Neo (`anchor`) → id của phần tử. */
+export function normalizeAnchor(v) {
+    return typeof v === "string" && ANCHOR.test(v.trim()) ? v.trim() : undefined;
+}
+/** Class CSS riêng (`className`): tối đa 5 class hợp lệ, cách nhau bởi dấu cách. */
+export function normalizeClassName(v) {
+    if (typeof v !== "string")
+        return undefined;
+    const tokens = v.split(/\s+/).filter(Boolean).filter((t) => CLASS_TOKEN.test(t)).slice(0, 5);
+    return tokens.length ? [...new Set(tokens)].join(" ") : undefined;
+}
+/** Biến thể có sẵn của lõi (CSS trong style.css); theme thêm bằng theme.json › blockStyles. */
+export const CORE_BLOCK_STYLES = {
+    table: ["stripes"],
+    image: ["rounded", "circle"],
+    blockquote: ["plain"],
+    horizontalRule: ["dots", "wide"],
+    button: ["pill"],
+    group: ["card"],
+};
+const FLUID = /^clamp\(\s*-?[\d.]+(px|rem|em|vw|vh|%)?\s*,\s*[\d.\s+\-*()a-z%]{1,60},\s*-?[\d.]+(px|rem|em|vw|vh|%)?\s*\)$/;
+const FONT = /^[\w\s"',.\-]{1,200}$/;
+const presetSize = (v) => (typeof v === "string" && (LENGTH.test(v.trim()) || FLUID.test(v.trim())) ? v.trim() : undefined);
+const presetColor = (v) => (typeof v === "string" && COLOR.test(v.trim()) ? v.trim() : undefined);
+const presetFont = (v) => (typeof v === "string" && FONT.test(v.trim()) ? v.trim() : undefined);
+/** Chuẩn hoá preset: tên preset hợp lệ, giá trị đã kiểm (màu hex/rgb/hsl, độ dài hoặc clamp(), danh sách phông không có ; { }). */
+export function normalizePresets(v) {
+    const out = {};
+    if (!isObj(v))
+        return out;
+    const pick = (key, fn) => {
+        const src = v[key];
+        if (!isObj(src))
+            return;
+        const r = {};
+        for (const [k, x] of Object.entries(src)) {
+            const value = isObj(x) ? x.value : x;
+            const ok = /^([a-z][a-z0-9-]{0,30}|[1-9]x[sl])$/.test(k) ? fn(value) : undefined;
+            if (ok !== undefined)
+                r[k] = ok;
+        }
+        if (Object.keys(r).length)
+            out[key] = r;
+    };
+    pick("colors", presetColor);
+    pick("fontSizes", presetSize);
+    pick("spacing", presetSize);
+    pick("fonts", presetFont);
+    return out;
+}
+/** Gộp preset theo thứ tự (sau đè trước): theme → bản sửa của quản trị viên. */
+export function mergePresets(...list) {
+    const out = {};
+    for (const p of list.map(normalizePresets))
+        for (const k of Object.keys(p))
+            out[k] = { ...out[k], ...p[k] };
+    return out;
+}
+/** Biến CSS của preset: `--ecx-color-*`, `--ecx-font-size-*`, `--ecx-spacing-*`, `--ecx-font-family-*`. */
+export function presetCss(presets, selector = ":root") {
+    const p = normalizePresets(presets);
+    const decl = [
+        ...Object.entries(p.colors ?? {}).map(([k, v]) => `--ecx-color-${k}:${v}`),
+        ...Object.entries(p.fontSizes ?? {}).map(([k, v]) => `--ecx-font-size-${k}:${v}`),
+        ...Object.entries(p.spacing ?? {}).map(([k, v]) => `--ecx-spacing-${k}:${v}`),
+        ...Object.entries(p.fonts ?? {}).map(([k, v]) => `--ecx-font-family-${k}:${v}`),
+    ];
+    return decl.length ? `${selector}{${decl.join(";")}}` : "";
+}

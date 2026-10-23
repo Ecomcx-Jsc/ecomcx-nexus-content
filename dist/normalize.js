@@ -1,7 +1,7 @@
 import { blockNodeSpec, migrateBlockAttrs } from "./block.js";
 import { migrateContent } from "./migrate.js";
 import { CORE_MARKS, CORE_NODES, normalizeAttrs } from "./schema.js";
-import { normalizeStyle } from "./style.js";
+import { normalizeAnchor, normalizeBlockStyleName, normalizeClassName, normalizeStyle } from "./style.js";
 import { CONTENT_VERSION } from "./types.js";
 const empty = () => ({ version: CONTENT_VERSION, blocks: [] });
 const isObj = (v) => !!v && typeof v === "object" && !Array.isArray(v);
@@ -103,6 +103,16 @@ function normalizeNode(node, depth, state) {
             attrs.style = style;
         else
             delete attrs.style;
+    }
+    // Biến thể kiểu, neo, class riêng (mọi khối)
+    for (const [k, fn] of [["blockStyle", normalizeBlockStyleName], ["anchor", normalizeAnchor], ["className", normalizeClassName]]) {
+        if (attrs && k in attrs) {
+            const v = fn(attrs[k]);
+            if (v === undefined)
+                delete attrs[k];
+            else
+                attrs[k] = v;
+        }
     }
     if (attrs && Object.keys(attrs).length)
         out.attrs = attrs;

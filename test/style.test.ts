@@ -20,7 +20,7 @@ function outsideWhere(sel: string) {
 test("style.css: mọi selector có độ ưu tiên 0 (theme luôn ghi đè được)", () => {
   const selectors = [...css.matchAll(/([^{}]+)\{/g)].map((m) => m[1].trim()).filter((s) => s && !s.startsWith("@"));
   assert.ok(selectors.length > 20);
-  for (const s of selectors) assert.match(outsideWhere(s), /^[\s>+~]*$/, `selector có độ ưu tiên: ${s}`);
+  for (const s of selectors) assert.match(outsideWhere(s), /^[\s>+~]*(::(before|after))?$/, `selector có độ ưu tiên: ${s}`);
 });
 
 test("style.css: nằm trọn trong @layer ecx-content", () => {

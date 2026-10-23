@@ -110,6 +110,18 @@
   :where(.ecx-toc) :where(ol) { margin: 0; padding-left: 1.25em; }
   :where(.ecx-pre) { white-space: pre-wrap; font-family: var(--ecx-font-family-mono, ui-monospace, monospace); font-size: .9em; }
 
+  /* Biến thể kiểu có sẵn (attrs.blockStyle → .ecx-is-<tên>) */
+  :where(.ecx-is-stripes) :where(tbody tr:nth-child(odd) > td) { background: var(--_surface, color-mix(in srgb, currentColor 5%, transparent)); }
+  :where(.ecx-is-stripes) :where(th, td) { border-inline: 0; }
+  :where(.ecx-is-rounded img, img.ecx-is-rounded) { border-radius: 16px; }
+  :where(.ecx-is-circle img, img.ecx-is-circle) { border-radius: 50%; aspect-ratio: 1; object-fit: cover; }
+  :where(blockquote.ecx-is-plain) { border: 0; padding-left: 0; font-style: normal; }
+  :where(hr.ecx-is-dots) { border: 0; text-align: center; overflow: visible; }
+  :where(hr.ecx-is-dots)::before { content: "· · ·"; letter-spacing: 1em; font-size: 1.25em; color: var(--_muted, currentColor); }
+  :where(hr.ecx-is-wide) { border-top-width: 3px; }
+  :where(.ecx-is-pill .ecx-button, .ecx-button.ecx-is-pill) { border-radius: 999px !important; }
+  :where(.ecx-group.ecx-is-card) { padding: 1.5rem; border: 1px solid var(--_border, color-mix(in srgb, currentColor 15%, transparent)); border-radius: 12px; box-shadow: 0 4px 20px rgb(0 0 0 / .06); }
+
   /* Khối động (template / Trình dựng) */
   :where(.ecx-site-title) { margin: 0; font-weight: 700; }
   :where(.ecx-site-title) :where(a) { color: inherit; text-decoration: none; }

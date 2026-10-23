@@ -52,3 +52,23 @@ export declare function styleClass(style: BlockStyle): string;
 export declare function styleCss(style: BlockStyle, cls?: string): string;
 /** Gom CSS cho cả một cây nội dung: trả về css (mỗi class một lần) — website và trình soạn dùng chung. */
 export declare function collectStyles(styles: Iterable<BlockStyle>): string;
+/** Biến thể kiểu (`blockStyle`): tên preset → class `ecx-is-<tên>`. */
+export declare function normalizeBlockStyleName(v: unknown): string | undefined;
+/** Neo (`anchor`) → id của phần tử. */
+export declare function normalizeAnchor(v: unknown): string | undefined;
+/** Class CSS riêng (`className`): tối đa 5 class hợp lệ, cách nhau bởi dấu cách. */
+export declare function normalizeClassName(v: unknown): string | undefined;
+/** Biến thể có sẵn của lõi (CSS trong style.css); theme thêm bằng theme.json › blockStyles. */
+export declare const CORE_BLOCK_STYLES: Record<string, string[]>;
+export interface StylePresets {
+    colors?: Record<string, string>;
+    fontSizes?: Record<string, string>;
+    spacing?: Record<string, string>;
+    fonts?: Record<string, string>;
+}
+/** Chuẩn hoá preset: tên preset hợp lệ, giá trị đã kiểm (màu hex/rgb/hsl, độ dài hoặc clamp(), danh sách phông không có ; { }). */
+export declare function normalizePresets(v: unknown): StylePresets;
+/** Gộp preset theo thứ tự (sau đè trước): theme → bản sửa của quản trị viên. */
+export declare function mergePresets(...list: unknown[]): StylePresets;
+/** Biến CSS của preset: `--ecx-color-*`, `--ecx-font-size-*`, `--ecx-spacing-*`, `--ecx-font-family-*`. */
+export declare function presetCss(presets: unknown, selector?: string): string;

@@ -65,6 +65,14 @@ Mọi khối (lõi và plugin) có thể mang `attrs.style`:
 - `fontFamily` chỉ nhận tên preset (`body`, `heading`, `mono`… → `var(--ecx-font-family-heading, inherit)`), theme khai báo phông.
 - Preset mặc định nằm trong `style.css` (`--ecx-spacing-xs…3xl`, `--ecx-font-size-xs…4xl`, `--ecx-color-primary|muted|surface|white|black`); theme đặt lại biến để đổi.
 
+## Biến thể kiểu, neo, class riêng (1.10)
+
+Mọi khối có thể mang `attrs.blockStyle` (tên biến thể → class `ecx-is-<tên>`), `attrs.anchor` (id để làm neo, vd `#bang-gia`), `attrs.className` (tối đa 5 class CSS hợp lệ). Biến thể có sẵn của lõi (`CORE_BLOCK_STYLES`, CSS trong `style.css`): bảng `stripes`; ảnh `rounded`, `circle`; trích dẫn `plain`; đường kẻ `dots`, `wide`; nút `pill`; nhóm `card`. Theme thêm biến thể bằng `theme.json › blockStyles` và CSS `.ecx-is-<tên>`.
+
+## Preset toàn site (1.10)
+
+`theme.json › styles` (`colors`, `fontSizes`, `spacing`, `fonts`) + bản sửa của quản trị viên → `mergePresets(theme, user)` → `presetCss()` sinh `:root{--ecx-color-*;--ecx-font-size-*;--ecx-spacing-*;--ecx-font-family-*}`. Giá trị được kiểm: màu hex/rgb/hsl, độ dài hoặc `clamp()`, danh sách phông không có `; { }`.
+
 ## Nhúng theo đường dẫn — `embedInfo`
 
 Khối `embed` chỉ lưu `url` (+ `caption`). `embedInfo(url)` nhận ra nhà cung cấp trong danh sách (YouTube, Vimeo, Loom, Spotify, SoundCloud, TikTok, X, Instagram, Facebook video, CodePen, Figma, Google Maps dạng embed) và **tự dựng** địa chỉ khung từ mã trong đường dẫn — không dùng HTML nhúng do người dùng dán, nên bài viết không chèn được khung tới trang tuỳ ý. Không nhận ra → `null`, website hiện liên kết thường. Trình soạn (xem trước) và website dùng chung hàm này.

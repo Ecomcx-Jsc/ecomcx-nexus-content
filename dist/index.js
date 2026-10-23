@@ -7,3 +7,4 @@ export { isSafeUrl, safeUrl } from "./url.js";
 export { BLOCK_VERSION_ATTR, blockDefaults, blockNodeSpec, defineBlock, migrateBlockAttrs } from "./block.js";
 export { EMBED_PROVIDERS, embedInfo } from "./embed.js";
 export { BREAKPOINTS, DEVICES, collectStyles, colorCss, normalizeStyle, spacingValue, styleClass, styleCss } from "./style.js";
+export { CORE_BLOCK_STYLES, mergePresets, normalizeAnchor, normalizeBlockStyleName, normalizeClassName, normalizePresets, presetCss } from "./style.js";

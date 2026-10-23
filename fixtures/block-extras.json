@@ -1,0 +1,131 @@
+{
+  "name": "block-extras",
+  "note": "Thuộc tính chung (1.10): biến thể kiểu blockStyle, neo anchor (cắt khoảng trắng), class riêng className (tối đa 5, bỏ trùng, bỏ class không hợp lệ) — mọi khối, kể cả khối plugin",
+  "input": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "table",
+              "attrs": {
+                "blockStyle": "stripes",
+                "anchor": " bang-gia ",
+                "className": "pricing  pricing  x\"y  -ok"
+              },
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "content": [
+                        {
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "blockStyle": "Bad Style",
+                "anchor": "1abc",
+                "className": "<script>"
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "x"
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "attrs": {
+                "src": "/a.png",
+                "blockStyle": "rounded",
+                "className": "a b c d e f g"
+              }
+            },
+            {
+              "type": "demo/hero",
+              "attrs": {
+                "anchor": "hero",
+                "blockStyle": "dark"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "expected": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "table",
+              "attrs": {
+                "blockStyle": "stripes",
+                "anchor": "bang-gia",
+                "className": "pricing -ok"
+              },
+              "content": [
+                {
+                  "type": "tableRow",
+                  "content": [
+                    {
+                      "type": "tableCell",
+                      "content": [
+                        {
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "x"
+                }
+              ]
+            },
+            {
+              "type": "image",
+              "attrs": {
+                "src": "/a.png",
+                "blockStyle": "rounded",
+                "className": "a b c d e"
+              }
+            },
+            {
+              "type": "demo/hero",
+              "attrs": {
+                "anchor": "hero",
+                "blockStyle": "dark"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
