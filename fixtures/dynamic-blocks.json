@@ -1,0 +1,316 @@
+{
+  "name": "dynamic-blocks",
+  "note": "Khối động (1.6): ép kiểu (\"1\" → 1, \"false\" → false), kẹp perPage ≤ 50 và width ≤ 600, bỏ giá trị ngoài danh sách (orderBy \"random\", orientation \"diagonal\", textAlign \"middle\") và null",
+  "input": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "templatePart",
+              "attrs": {
+                "slug": "header",
+                "tagName": "header"
+              }
+            },
+            {
+              "type": "group",
+              "attrs": {
+                "padding": "small"
+              },
+              "content": [
+                {
+                  "type": "siteLogo",
+                  "attrs": {
+                    "width": "800",
+                    "link": "false"
+                  }
+                },
+                {
+                  "type": "siteTitle",
+                  "attrs": {
+                    "level": "1",
+                    "textAlign": "middle"
+                  }
+                },
+                {
+                  "type": "siteTagline"
+                },
+                {
+                  "type": "navigation",
+                  "attrs": {
+                    "location": "primary",
+                    "orientation": "diagonal"
+                  }
+                },
+                {
+                  "type": "search",
+                  "attrs": {
+                    "placeholder": "Tìm…",
+                    "buttonText": null
+                  }
+                },
+                {
+                  "type": "languageSwitcher"
+                }
+              ]
+            },
+            {
+              "type": "postTitle",
+              "attrs": {
+                "level": 2,
+                "link": "true"
+              }
+            },
+            {
+              "type": "featuredImage",
+              "attrs": {
+                "aspect": "16/9",
+                "size": "medium"
+              }
+            },
+            {
+              "type": "postDate"
+            },
+            {
+              "type": "postAuthor",
+              "attrs": {
+                "avatar": true
+              }
+            },
+            {
+              "type": "postTerms",
+              "attrs": {
+                "taxonomy": "post_tag"
+              }
+            },
+            {
+              "type": "postContent"
+            },
+            {
+              "type": "postExcerpt",
+              "attrs": {
+                "moreText": "Đọc tiếp"
+              }
+            },
+            {
+              "type": "comments"
+            },
+            {
+              "type": "query",
+              "attrs": {
+                "inherit": "false",
+                "perPage": "100",
+                "category": "tin-tuc",
+                "orderBy": "random",
+                "order": "asc"
+              },
+              "content": [
+                {
+                  "type": "postTemplate",
+                  "attrs": {
+                    "layout": "grid",
+                    "columns": "3"
+                  },
+                  "content": [
+                    {
+                      "type": "postTitle",
+                      "attrs": {
+                        "level": 3,
+                        "link": true
+                      }
+                    },
+                    {
+                      "type": "postExcerpt"
+                    }
+                  ]
+                },
+                {
+                  "type": "pagination"
+                },
+                {
+                  "type": "queryEmpty",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Chưa có bài"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "copyright",
+              "attrs": {
+                "text": "Bản quyền"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "expected": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "templatePart",
+              "attrs": {
+                "slug": "header",
+                "tagName": "header"
+              }
+            },
+            {
+              "type": "group",
+              "attrs": {
+                "padding": "small"
+              },
+              "content": [
+                {
+                  "type": "siteLogo",
+                  "attrs": {
+                    "width": 600,
+                    "link": false
+                  }
+                },
+                {
+                  "type": "siteTitle",
+                  "attrs": {
+                    "level": 1
+                  }
+                },
+                {
+                  "type": "siteTagline"
+                },
+                {
+                  "type": "navigation",
+                  "attrs": {
+                    "location": "primary"
+                  }
+                },
+                {
+                  "type": "search",
+                  "attrs": {
+                    "placeholder": "Tìm…"
+                  }
+                },
+                {
+                  "type": "languageSwitcher"
+                }
+              ]
+            },
+            {
+              "type": "postTitle",
+              "attrs": {
+                "level": 2,
+                "link": true
+              }
+            },
+            {
+              "type": "featuredImage",
+              "attrs": {
+                "aspect": "16/9",
+                "size": "medium"
+              }
+            },
+            {
+              "type": "postDate"
+            },
+            {
+              "type": "postAuthor",
+              "attrs": {
+                "avatar": true
+              }
+            },
+            {
+              "type": "postTerms",
+              "attrs": {
+                "taxonomy": "post_tag"
+              }
+            },
+            {
+              "type": "postContent"
+            },
+            {
+              "type": "postExcerpt",
+              "attrs": {
+                "moreText": "Đọc tiếp"
+              }
+            },
+            {
+              "type": "comments"
+            },
+            {
+              "type": "query",
+              "attrs": {
+                "inherit": false,
+                "perPage": 50,
+                "category": "tin-tuc",
+                "order": "asc"
+              },
+              "content": [
+                {
+                  "type": "postTemplate",
+                  "attrs": {
+                    "layout": "grid",
+                    "columns": 3
+                  },
+                  "content": [
+                    {
+                      "type": "postTitle",
+                      "attrs": {
+                        "level": 3,
+                        "link": true
+                      }
+                    },
+                    {
+                      "type": "postExcerpt"
+                    }
+                  ]
+                },
+                {
+                  "type": "pagination"
+                },
+                {
+                  "type": "queryEmpty",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Chưa có bài"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "copyright",
+              "attrs": {
+                "text": "Bản quyền"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

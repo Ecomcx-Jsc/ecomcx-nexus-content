@@ -73,7 +73,40 @@ export const CORE_NODES: Record<string, NodeSpec> = {
     },
   },
   embed: { attrs: { url: url(), caption: s() } },
+  // Khối động (1.6): lấy dữ liệu lúc hiển thị theo ngữ cảnh (website, trang đang xem, bài trong vòng lặp) — dùng trong template
+  siteTitle: { attrs: { level: i({ min: 0, max: 6, default: 0 }), link: b({ default: true }), textAlign: align } },
+  siteLogo: { attrs: { width: n({ min: 16, max: 600, default: 120 }), link: b({ default: true }) } },
+  siteTagline: { attrs: { textAlign: align } },
+  navigation: { attrs: { location: s({ default: "primary" }), orientation: s({ enum: ["horizontal", "vertical"], default: "horizontal" }), mobile: b({ default: true }) } },
+  search: { attrs: { placeholder: s(), buttonText: s() } },
+  languageSwitcher: {},
+  copyright: { attrs: { text: s(), textAlign: align } },
+  postTitle: { attrs: { level: i({ min: 1, max: 6, default: 1 }), link: b({ default: false }), textAlign: align } },
+  postContent: {},
+  postExcerpt: { attrs: { moreText: s() } },
+  featuredImage: { attrs: { size: s({ default: "large" }), link: b({ default: false }), aspect: s({ enum: ["auto", "16/9", "4/3", "1/1", "3/4"], default: "auto" }) } },
+  postDate: { attrs: { textAlign: align } },
+  postAuthor: { attrs: { avatar: b({ default: false }) } },
+  postTerms: { attrs: { taxonomy: s({ default: "category" }), separator: s({ default: ", " }) } },
+  comments: {},
+  query: {
+    attrs: {
+      inherit: b({ default: true }), postType: s({ default: "post" }), perPage: i({ min: 1, max: 50, default: 10 }),
+      category: s(), tag: s(), orderBy: s({ enum: ["date", "title", "menu_order"], default: "date" }), order: s({ enum: ["desc", "asc"], default: "desc" }),
+    },
+  },
+  postTemplate: { attrs: { layout: s({ enum: ["list", "grid"], default: "list" }), columns: i({ min: 1, max: 6, default: 3 }) } },
+  pagination: {},
+  queryEmpty: {},
+  templatePart: { attrs: { slug: s(), tagName: s({ enum: ["div", "header", "footer", "aside", "section"], default: "div" }) } },
 };
+
+/** Khối động: nội dung lấy theo ngữ cảnh lúc hiển thị (website, trang, bài trong vòng lặp). */
+export const DYNAMIC_NODES = [
+  "siteTitle", "siteLogo", "siteTagline", "navigation", "search", "languageSwitcher", "copyright",
+  "postTitle", "postContent", "postExcerpt", "featuredImage", "postDate", "postAuthor", "postTerms", "comments",
+  "query", "postTemplate", "pagination", "queryEmpty", "templatePart",
+] as const;
 
 export const CORE_MARKS: Record<string, NodeSpec> = {
   bold: {}, italic: {}, underline: {}, strike: {}, code: {}, subscript: {}, superscript: {},

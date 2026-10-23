@@ -32,6 +32,17 @@ CMS lưu **dữ liệu**, HTML vẽ lúc hiển thị → theme đổi giao di�
 - Giới hạn: lồng tối đa 64 cấp, tối đa 100 000 nút một bài.
 - `version` tăng khi đổi cấu trúc, kèm hàm nâng cấp (`src/migrate.ts`) — bài lưu bằng bản cũ được nâng khi đọc.
 
+## Khối động (1.6)
+
+Khối không chứa chữ cố định — lấy dữ liệu lúc hiển thị theo ngữ cảnh (dùng trong template của theme / Trình dựng, hoặc trang dựng bằng khối). Danh sách: `DYNAMIC_NODES`.
+
+| Nhóm | Khối | Thuộc tính |
+|---|---|---|
+| Website | `siteTitle`, `siteLogo`, `siteTagline`, `navigation`, `search`, `languageSwitcher`, `copyright` | `level`, `link`, `width`, `location` (vị trí menu), `orientation`, `mobile`, `placeholder`, `buttonText`, `text`, `textAlign` |
+| Bài / trang đang xem (hoặc bài trong vòng lặp) | `postTitle`, `postContent`, `postExcerpt`, `featuredImage`, `postDate`, `postAuthor`, `postTerms`, `comments` | `level`, `link`, `moreText`, `size`, `aspect`, `avatar`, `taxonomy`, `separator` |
+| Danh sách bài | `query` > `postTemplate` (khuôn lặp cho từng bài) + `pagination` + `queryEmpty` | `inherit` (dùng danh sách của trang đang xem), `postType`, `perPage`, `category`, `tag`, `orderBy`, `order`; `layout` (`list`/`grid`), `columns` |
+| Ghép | `templatePart` | `slug` (vd `header`, `footer`), `tagName` |
+
 ## Nhúng theo đường dẫn — `embedInfo`
 
 Khối `embed` chỉ lưu `url` (+ `caption`). `embedInfo(url)` nhận ra nhà cung cấp trong danh sách (YouTube, Vimeo, Loom, Spotify, SoundCloud, TikTok, X, Instagram, Facebook video, CodePen, Figma, Google Maps dạng embed) và **tự dựng** địa chỉ khung từ mã trong đường dẫn — không dùng HTML nhúng do người dùng dán, nên bài viết không chèn được khung tới trang tuỳ ý. Không nhận ra → `null`, website hiện liên kết thường. Trình soạn (xem trước) và website dùng chung hàm này.
