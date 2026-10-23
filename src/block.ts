@@ -4,7 +4,7 @@ import type { AttrSpec, NodeSpec } from "./schema.js";
  * Cách nhập một thuộc tính trong form cài đặt của khối (trình soạn tự sinh form). Mặc định suy từ kiểu:
  * string → text (có enum → select), number/integer → number, boolean → checkbox, url → url.
  */
-export type AttrControl = "text" | "textarea" | "number" | "checkbox" | "select" | "color" | "url" | "hidden";
+export type AttrControl = "text" | "textarea" | "number" | "checkbox" | "select" | "color" | "url" | "media" | "hidden";
 
 export interface BlockAttrSpec extends AttrSpec {
   /** Nhãn trong form cài đặt (chữ hoặc "%khoá%" dịch theo locales của plugin). */
