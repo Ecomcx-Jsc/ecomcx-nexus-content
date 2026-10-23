@@ -55,6 +55,25 @@
   /* Template trang "full-width": nội dung trải hết chiều ngang dù nằm trong khung giới hạn của theme */
   :where(.ecx-full-width) { width: 100vw; margin-inline: calc(50% - 50vw); }
 
+  /* Khối động (template / Trình dựng) */
+  :where(.ecx-site-title) { margin: 0; font-weight: 700; }
+  :where(.ecx-site-title) :where(a) { color: inherit; text-decoration: none; }
+  :where(.ecx-site-tagline, .ecx-copyright, .ecx-post-date, .ecx-post-terms, .ecx-post-author) { color: var(--_muted, inherit); }
+  :where(.ecx-navigation-menu) :where(ul) { display: flex; flex-wrap: wrap; gap: .25em 1.25em; margin: 0; padding: 0; list-style: none; }
+  :where(.ecx-navigation-menu) :where(ul ul) { display: none; }
+  :where(.ecx-navigation-menu) :where(a) { color: inherit; text-decoration: none; }
+  :where(.ecx-navigation-vertical .ecx-navigation-menu) :where(ul) { flex-direction: column; }
+  :where(.ecx-navigation-toggle) { display: none; }
+  :where(.ecx-navigation-toggle) > :where(summary) { list-style: none; cursor: pointer; font-size: 1.4em; line-height: 1; }
+  :where(.ecx-navigation-toggle[open] .ecx-navigation-menu) :where(ul) { flex-direction: column; padding-top: .5em; }
+  @media (max-width: 640px) {
+    :where(.ecx-navigation.has-mobile) > :where(.ecx-navigation-items) { display: none; }
+    :where(.ecx-navigation.has-mobile) > :where(.ecx-navigation-toggle) { display: block; }
+  }
+  :where(.ecx-post-template) { margin: 0; padding: 0; list-style: none; }
+  :where(.ecx-post-template:not(.is-grid)) > :where(.ecx-post + .ecx-post) { margin-top: 2em; }
+  :where(.ecx-post) > :where(:first-child) { margin-top: 0; }
+
   :where(.ecx-form) { display: grid; gap: 1em; max-width: 36rem; margin: 1.5em 0; }
   :where(.ecx-form) :where(.ecx-form-field) { display: grid; gap: .35em; margin: 0; }
   :where(.ecx-form) :where(.ecx-form-boolean) { display: block; }
