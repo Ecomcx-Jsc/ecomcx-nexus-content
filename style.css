@@ -1,65 +1,65 @@
 /*
  * Giao diện nền cho nội dung (@cms/content) — dùng chung cho website và trình soạn.
  * Mọi selector bọc trong :where() → độ ưu tiên 0, CSS của theme luôn thắng.
- * Theme đổi màu bằng biến: --cms-border, --cms-muted, --cms-accent, --cms-surface, --cms-code-bg, --cms-code-fg.
+ * Theme đổi màu bằng biến: --ecx-border, --ecx-muted, --ecx-accent, --ecx-surface, --ecx-code-bg, --ecx-code-fg.
  */
-:where(.cms-content) {
-  --_border: var(--cms-border, color-mix(in srgb, currentColor 18%, transparent));
-  --_muted: var(--cms-muted, color-mix(in srgb, currentColor 65%, transparent));
-  --_accent: var(--cms-accent, var(--primary, currentColor));
-  --_surface: var(--cms-surface, color-mix(in srgb, currentColor 5%, transparent));
+:where(.ecx-content) {
+  --_border: var(--ecx-border, color-mix(in srgb, currentColor 18%, transparent));
+  --_muted: var(--ecx-muted, color-mix(in srgb, currentColor 65%, transparent));
+  --_accent: var(--ecx-accent, var(--primary, currentColor));
+  --_surface: var(--ecx-surface, color-mix(in srgb, currentColor 5%, transparent));
   overflow-wrap: break-word;
 }
 
-:where(.cms-content) :where(ul, ol) { padding-left: 1.5em; }
-:where(.cms-content) :where(ul) { list-style: disc; }
-:where(.cms-content) :where(ol) { list-style: decimal; }
-:where(.cms-content) :where(li > p) { margin: 0; }
-:where(.cms-content) :where(ul.task-list) { list-style: none; padding-left: 0; }
-:where(.cms-content) :where(.task-item) { display: flex; gap: .5em; align-items: baseline; }
+:where(.ecx-content) :where(ul, ol) { padding-left: 1.5em; }
+:where(.ecx-content) :where(ul) { list-style: disc; }
+:where(.ecx-content) :where(ol) { list-style: decimal; }
+:where(.ecx-content) :where(li > p) { margin: 0; }
+:where(.ecx-content) :where(.ecx-task-list) { list-style: none; padding-left: 0; }
+:where(.ecx-content) :where(.ecx-task-item) { display: flex; gap: .5em; align-items: baseline; }
 
-:where(.cms-content) :where(blockquote) { margin: 1.5em 0; padding: .25em 0 .25em 1em; border-left: 3px solid var(--_accent); color: var(--_muted); }
-:where(.cms-content) :where(pre) { padding: 1em 1.25em; border-radius: 8px; overflow-x: auto; background: var(--cms-code-bg, #18181b); color: var(--cms-code-fg, #f4f4f5);
+:where(.ecx-content) :where(blockquote) { margin: 1.5em 0; padding: .25em 0 .25em 1em; border-left: 3px solid var(--_accent); color: var(--_muted); }
+:where(.ecx-content) :where(pre) { padding: 1em 1.25em; border-radius: 8px; overflow-x: auto; background: var(--ecx-code-bg, #18181b); color: var(--ecx-code-fg, #f4f4f5);
   font: .875rem/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; }
-:where(.cms-content) :where(code) { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; }
-:where(.cms-content) :where(:not(pre) > code) { padding: .1em .35em; border-radius: 4px; background: var(--_surface); }
-:where(.cms-content) :where(hr) { margin: 2em 0; border: 0; border-top: 1px solid var(--_border); }
-:where(.cms-content) :where(a) { color: var(--_accent); text-underline-offset: 2px; }
-:where(.cms-content) :where(mark) { padding: 0 .1em; }
+:where(.ecx-content) :where(code) { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; }
+:where(.ecx-content) :where(:not(pre) > code) { padding: .1em .35em; border-radius: 4px; background: var(--_surface); }
+:where(.ecx-content) :where(hr) { margin: 2em 0; border: 0; border-top: 1px solid var(--_border); }
+:where(.ecx-content) :where(a) { color: var(--_accent); text-underline-offset: 2px; }
+:where(.ecx-content) :where(mark) { padding: 0 .1em; }
 
-:where(.cms-content) :where(img, video, iframe) { max-width: 100%; }
-:where(.cms-content) :where(img) { height: auto; }
-:where(.cms-content) :where(figure) { margin: 1.5em 0; }
-:where(.cms-content) :where(figcaption) { margin-top: .5em; font-size: .875em; color: var(--_muted); text-align: center; }
-:where(.cms-content) :where(.aligncenter) { margin-left: auto; margin-right: auto; text-align: center; }
-:where(.cms-content) :where(.alignleft) { float: left; margin: .25em 1.5em 1em 0; max-width: 50%; }
-:where(.cms-content) :where(.alignright) { float: right; margin: .25em 0 1em 1.5em; max-width: 50%; }
+:where(.ecx-content) :where(img, video, iframe) { max-width: 100%; }
+:where(.ecx-content) :where(img) { height: auto; }
+:where(.ecx-content) :where(figure) { margin: 1.5em 0; }
+:where(.ecx-content) :where(figcaption) { margin-top: .5em; font-size: .875em; color: var(--_muted); text-align: center; }
+:where(.ecx-content) :where(.ecx-align-center) { margin-left: auto; margin-right: auto; text-align: center; }
+:where(.ecx-content) :where(.ecx-align-left) { float: left; margin: .25em 1.5em 1em 0; max-width: 50%; }
+:where(.ecx-content) :where(.ecx-align-right) { float: right; margin: .25em 0 1em 1.5em; max-width: 50%; }
 
-:where(.cms-content) :where(.table-wrap) { overflow-x: auto; margin: 1.5em 0; }
-:where(.cms-content) :where(table) { width: 100%; border-collapse: collapse; }
-:where(.cms-content) :where(th, td) { height: 2.5em; padding: .5em .75em; border: 1px solid var(--_border); vertical-align: top; text-align: start; }
-:where(.cms-content) :where(th) { background: var(--_surface); font-weight: 600; }
-:where(.cms-content) :where(th, td) > :where(p) { margin: 0; }
+:where(.ecx-content) :where(.ecx-table) { overflow-x: auto; margin: 1.5em 0; }
+:where(.ecx-content) :where(table) { width: 100%; border-collapse: collapse; }
+:where(.ecx-content) :where(th, td) { height: 2.5em; padding: .5em .75em; border: 1px solid var(--_border); vertical-align: top; text-align: start; }
+:where(.ecx-content) :where(th) { background: var(--_surface); font-weight: 600; }
+:where(.ecx-content) :where(th, td) > :where(p) { margin: 0; }
 
-:where(.cms-content) :where(.embed) { position: relative; aspect-ratio: 16 / 9; margin: 1.5em 0; }
-:where(.cms-content) :where(.embed iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 8px; }
-:where(.cms-content) :where(.cms-file) { margin: 1.5em 0; }
-:where(.cms-content) :where(.cms-file-link) { display: inline-block; padding: .5em .9em; border: 1px solid var(--_border); border-radius: 8px; text-decoration: none; }
+:where(.ecx-content) :where(.ecx-youtube) { position: relative; aspect-ratio: 16 / 9; margin: 1.5em 0; }
+:where(.ecx-content) :where(.ecx-youtube iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 8px; }
+:where(.ecx-content) :where(.ecx-file) { margin: 1.5em 0; }
+:where(.ecx-content) :where(.ecx-file-link) { display: inline-block; padding: .5em .9em; border: 1px solid var(--_border); border-radius: 8px; text-decoration: none; }
 
-:where(.cms-content) :where(.cms-columns, .cms-group, .cms-callout, .cms-embed) { margin: 1.5em 0; }
-:where(.cms-content) :where(.cms-column, .cms-group, .cms-callout) > :where(:first-child) { margin-top: 0; }
-:where(.cms-content) :where(.cms-column, .cms-group, .cms-callout) > :where(:last-child) { margin-bottom: 0; }
+:where(.ecx-content) :where(.ecx-columns, .ecx-group, .ecx-callout, .ecx-embed) { margin: 1.5em 0; }
+:where(.ecx-content) :where(.ecx-column, .ecx-group, .ecx-callout) > :where(:first-child) { margin-top: 0; }
+:where(.ecx-content) :where(.ecx-column, .ecx-group, .ecx-callout) > :where(:last-child) { margin-bottom: 0; }
 
-:where(.cms-form) { display: grid; gap: 1em; max-width: 36rem; margin: 1.5em 0; }
-:where(.cms-form) :where(.cms-form-field) { display: grid; gap: .35em; margin: 0; }
-:where(.cms-form) :where(.cms-form-boolean) { display: block; }
-:where(.cms-form) :where(input:not([type="checkbox"], [type="radio"]), select, textarea) {
-  width: 100%; box-sizing: border-box; padding: .55em .75em; border: 1px solid var(--cms-border, color-mix(in srgb, currentColor 25%, transparent));
+:where(.ecx-form) { display: grid; gap: 1em; max-width: 36rem; margin: 1.5em 0; }
+:where(.ecx-form) :where(.ecx-form-field) { display: grid; gap: .35em; margin: 0; }
+:where(.ecx-form) :where(.ecx-form-boolean) { display: block; }
+:where(.ecx-form) :where(input:not([type="checkbox"], [type="radio"]), select, textarea) {
+  width: 100%; box-sizing: border-box; padding: .55em .75em; border: 1px solid var(--ecx-border, color-mix(in srgb, currentColor 25%, transparent));
   border-radius: 8px; background: transparent; color: inherit; font: inherit; }
-:where(.cms-form) :where(input:focus-visible, select:focus-visible, textarea:focus-visible) { outline: 2px solid var(--cms-accent, var(--primary, currentColor)); outline-offset: 1px; }
-:where(.cms-form) :where([aria-invalid="true"]) { border-color: #dc2626; }
-:where(.cms-form) :where(button[type="submit"]) { justify-self: start; padding: .6em 1.2em; border: 0; border-radius: 8px; cursor: pointer; font: inherit; font-weight: 600;
-  background: var(--cms-button-bg, var(--primary, #18181b)); color: var(--cms-button-fg, #fff); }
-:where(.cms-form) :where(button[type="submit"]:disabled) { opacity: .6; cursor: progress; }
-:where(.cms-form) :where(.form-error) { color: #dc2626; font-size: .875em; }
-:where(.form-success) { padding: .75em 1em; border-radius: 8px; background: color-mix(in srgb, #16a34a 10%, transparent); }
+:where(.ecx-form) :where(input:focus-visible, select:focus-visible, textarea:focus-visible) { outline: 2px solid var(--ecx-accent, var(--primary, currentColor)); outline-offset: 1px; }
+:where(.ecx-form) :where([aria-invalid="true"]) { border-color: #dc2626; }
+:where(.ecx-form) :where(button[type="submit"]) { justify-self: start; padding: .6em 1.2em; border: 0; border-radius: 8px; cursor: pointer; font: inherit; font-weight: 600;
+  background: var(--ecx-button-bg, var(--primary, #18181b)); color: var(--ecx-button-fg, #fff); }
+:where(.ecx-form) :where(button[type="submit"]:disabled) { opacity: .6; cursor: progress; }
+:where(.ecx-form) :where(.ecx-form-error) { color: #dc2626; font-size: .875em; }
+:where(.ecx-form-success) { padding: .75em 1em; border-radius: 8px; background: color-mix(in srgb, #16a34a 10%, transparent); }

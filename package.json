@@ -1,6 +1,6 @@
 {
   "name": "@cms/content",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Định dạng nội dung của Ecomcx Nexus CMS: kiểu dữ liệu, schema khối lõi, chuẩn hoá, nâng phiên bản và bộ fixture hợp đồng — dùng chung cho trình soạn, website và máy chủ, không phụ thuộc trình soạn nào.",
   "license": "MIT",
   "type": "module",

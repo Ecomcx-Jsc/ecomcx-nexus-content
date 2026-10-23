@@ -63,10 +63,11 @@ contentText(doc);                                  // chữ thuần (tìm kiếm
 import "@cms/content/style.css";
 ```
 
-CSS tối thiểu cho nội dung nằm trong phần tử có class `cms-content` (bảng có viền, danh sách, trích dẫn, mã, ảnh, chú thích, khung nhúng, khối bố cục) và form `cms-form`. Website (`PostContent`) và trình soạn (`@cms/editor`) cùng nạp file này → theme không viết CSS cho nội dung vẫn hiển thị đúng, trình soạn và website giống nhau.
+CSS tối thiểu cho nội dung nằm trong phần tử có class `ecx-content` (bảng có viền, danh sách, trích dẫn, mã, ảnh, chú thích, khung nhúng, khối bố cục) và form `ecx-form`. Website (`PostContent`) và trình soạn (`@cms/editor`) cùng nạp file này → theme không viết CSS cho nội dung vẫn hiển thị đúng, trình soạn và website giống nhau.
 
 - Mọi selector nằm trong `:where()` → độ ưu tiên 0, CSS của theme luôn thắng.
-- Đổi màu bằng biến: `--cms-border`, `--cms-muted`, `--cms-accent` (mặc định `--primary`), `--cms-surface`, `--cms-code-bg`, `--cms-code-fg`, `--cms-button-bg`, `--cms-button-fg`. Không đặt thì màu suy ra từ màu chữ (`currentColor`) → hợp cả nền sáng lẫn tối.
+- Đổi màu bằng biến: `--ecx-border`, `--ecx-muted`, `--ecx-accent` (mặc định `--primary`), `--ecx-surface`, `--ecx-code-bg`, `--ecx-code-fg`, `--ecx-button-bg`, `--ecx-button-fg`. Không đặt thì màu suy ra từ màu chữ (`currentColor`) → hợp cả nền sáng lẫn tối.
+- Class của khối có tiền tố `ecx-` (`ecx-table`, `ecx-columns`, `ecx-callout`, `ecx-button`, `ecx-embed`, `ecx-align-left`…). Website vẫn xuất kèm class cũ `cms-*` / `table-wrap` / `alignleft` tới bản 2.0.
 
 ## Khối của plugin — `defineBlock`
 
