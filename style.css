@@ -39,7 +39,7 @@
 
   :where(.ecx-content) :where(.ecx-table) { overflow-x: auto; margin: 1.5em 0; }
   :where(.ecx-content) :where(table) { width: 100%; border-collapse: collapse; }
-  :where(.ecx-content) :where(th, td) { height: 2.5em; padding: .5em .75em; border: 1px solid var(--_border); vertical-align: top; text-align: start; }
+  :where(.ecx-content) :where(th, td) { box-sizing: border-box; height: 2.5em; padding: .5em .75em; border: 1px solid var(--_border); vertical-align: top; text-align: start; }
   :where(.ecx-content) :where(th) { background: var(--_surface); font-weight: 600; }
   :where(.ecx-content) :where(th, td) > :where(p) { margin: 0; }
 
