@@ -2,7 +2,7 @@
 
 Chuẩn lưu nội dung bài viết/trang của CMS, **không phụ thuộc trình soạn**. Trình soạn (hiện là TipTap/ProseMirror trong `@cms/editor`) chuyển sang chuẩn này; website (`@cms/theme-sdk`) và máy chủ (`ContentFormat.cs`) chỉ đọc chuẩn này. Đổi hay thay trình soạn không đổi dữ liệu đã lưu, website vẫn chạy.
 
-Khác WordPress (Gutenberg lưu HTML do hàm `save()` sinh ra): CMS lưu **dữ liệu**, HTML vẽ lúc hiển thị → không có lỗi "block contains unexpected or invalid content", theme đổi giao diện khối thì bài cũ tự theo.
+CMS lưu **dữ liệu**, HTML vẽ lúc hiển thị → theme đổi giao diện khối thì bài cũ tự theo, không có HTML cũ lệch với mã mới.
 
 ## Định dạng (bản 1)
 
@@ -56,6 +56,17 @@ import { normalizeContent, contentText, wordCount, isSafeUrl } from "@cms/conten
 const { doc, issues } = normalizeContent(input);   // {version, blocks}, cây TipTap thuần hoặc chuỗi HTML
 contentText(doc);                                  // chữ thuần (tìm kiếm, tóm tắt)
 ```
+
+## Giao diện nền — `style.css`
+
+```ts
+import "@cms/content/style.css";
+```
+
+CSS tối thiểu cho nội dung nằm trong phần tử có class `cms-content` (bảng có viền, danh sách, trích dẫn, mã, ảnh, chú thích, khung nhúng, khối bố cục) và form `cms-form`. Website (`PostContent`) và trình soạn (`@cms/editor`) cùng nạp file này → theme không viết CSS cho nội dung vẫn hiển thị đúng, trình soạn và website giống nhau.
+
+- Mọi selector nằm trong `:where()` → độ ưu tiên 0, CSS của theme luôn thắng.
+- Đổi màu bằng biến: `--cms-border`, `--cms-muted`, `--cms-accent` (mặc định `--primary`), `--cms-surface`, `--cms-code-bg`, `--cms-code-fg`, `--cms-button-bg`, `--cms-button-fg`. Không đặt thì màu suy ra từ màu chữ (`currentColor`) → hợp cả nền sáng lẫn tối.
 
 ## Khối của plugin — `defineBlock`
 
