@@ -68,6 +68,7 @@ CSS tối thiểu cho nội dung nằm trong phần tử có class `ecx-content`
 - Nằm trong `@layer ecx-content`, mọi selector trong `:where()` → CSS của theme luôn thắng, kể cả CSS có layer (Tailwind). Nạp file này **trước** CSS của theme. Ứng dụng có sẵn layer (vd Tailwind trong admin) mà muốn nền thắng reset của mình thì khai báo `@layer ecx-content;` sau các layer đó.
 - Đổi màu bằng biến: `--ecx-border`, `--ecx-muted`, `--ecx-accent` (mặc định `--primary`), `--ecx-surface`, `--ecx-code-bg`, `--ecx-code-fg`, `--ecx-button-bg`, `--ecx-button-fg`. Không đặt thì màu suy ra từ màu chữ (`currentColor`) → hợp cả nền sáng lẫn tối.
 - Class của khối có tiền tố `ecx-` (`ecx-table`, `ecx-columns`, `ecx-callout`, `ecx-button`, `ecx-embed`, `ecx-align-left`…). Website vẫn xuất kèm class cũ `cms-*` / `table-wrap` / `alignleft` tới bản 2.0.
+- `ecx-full-width` (template trang "full-width" của theme-sdk): trải hết chiều ngang màn hình dù nằm trong khung giới hạn của theme.
 
 ## Khối của plugin — `defineBlock`
 
