@@ -73,6 +73,27 @@ export const CORE_NODES: Record<string, NodeSpec> = {
     },
   },
   embed: { attrs: { url: url(), caption: s() } },
+  // Bộ khối cơ bản (1.9)
+  spacer: { attrs: { height: s({ default: "lg" }) } },
+  buttons: { attrs: { align: s({ enum: ["left", "center", "right", "space-between"] }) } },
+  cover: {
+    attrs: {
+      src: url(), mediaId: { type: "json" }, alt: s(), overlay: s(), opacity: i({ min: 0, max: 100, default: 50 }), minHeight: s({ default: "400px" }),
+      contentAlign: s({ enum: ["top", "center", "bottom"], default: "center" }), fixed: b({ default: false }),
+    },
+  },
+  mediaText: {
+    attrs: {
+      src: url(), mediaId: { type: "json" }, alt: s(), position: s({ enum: ["left", "right"], default: "left" }), width: i({ min: 20, max: 80, default: 50 }),
+      verticalAlign: s({ enum: ["top", "center", "bottom"], default: "center" }), stack: b({ default: true }),
+    },
+  },
+  pullquote: { attrs: { citation: s() } },
+  details: { attrs: { summary: s(), open: b({ default: false }) } },
+  customHtml: { attrs: { html: s() } },
+  socialLinks: { attrs: { links: { type: "json", default: [] }, size: s({ enum: ["small", "medium", "large"], default: "medium" }), align: s({ enum: ["left", "center", "right"] }) } },
+  tableOfContents: { attrs: { title: s(), maxLevel: i({ min: 2, max: 4, default: 3 }) } },
+  preformatted: {},
   // Khối động (1.6): lấy dữ liệu lúc hiển thị theo ngữ cảnh (website, trang đang xem, bài trong vòng lặp) — dùng trong template
   siteTitle: { attrs: { level: i({ min: 0, max: 6, default: 0 }), link: b({ default: true }), textAlign: align } },
   siteLogo: { attrs: { width: n({ min: 16, max: 600, default: 120 }), link: b({ default: true }) } },

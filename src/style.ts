@@ -142,6 +142,18 @@ function declarations(style: BlockStyle): Record<Device, string[]> {
   return out;
 }
 
+/** Độ dài / preset khoảng cách hợp lệ → giá trị CSS (preset thành biến); không hợp lệ → undefined. Dùng cho thuộc tính khối như chiều cao khoảng trống. */
+export function spacingValue(v: unknown): string | undefined {
+  const x = size(v);
+  return x === undefined ? undefined : spacing(x);
+}
+
+/** Màu hợp lệ (hex/rgb/hsl hoặc preset) → giá trị CSS; không hợp lệ → undefined. */
+export function colorCss(v: unknown): string | undefined {
+  const x = color(v);
+  return x === undefined ? undefined : colorValue(x);
+}
+
 /** Tên class ổn định theo nội dung style (cùng kiểu dáng → cùng class). */
 export function styleClass(style: BlockStyle): string {
   let h = 0x811c9dc5;

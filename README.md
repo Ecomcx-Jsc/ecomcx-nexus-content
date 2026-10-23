@@ -26,7 +26,7 @@ CMS lưu **dữ liệu**, HTML vẽ lúc hiển thị → theme đổi giao di�
 ] }
 ```
 
-- Khối lõi và thuộc tính: `CORE_NODES`, `CORE_MARKS` trong `src/schema.ts` (đoạn, tiêu đề, danh sách, danh sách việc, trích dẫn, mã, ảnh, bộ ảnh, video, âm thanh, tệp, bảng, YouTube; từ 1.2: cột `columns` > `column`, nhóm `group`, hộp lưu ý `callout`, nút `button`, nhúng `embed`; đậm, nghiêng, gạch chân, gạch ngang, mã, chỉ số trên/dưới, tô nền, màu chữ, liên kết).
+- Khối lõi và thuộc tính: `CORE_NODES`, `CORE_MARKS` trong `src/schema.ts` (1.9: mục lục `tableOfContents`, ảnh bìa `cover`, nhiều nút `buttons` > `button`, khoảng trống `spacer`, ảnh + chữ `mediaText`, trích dẫn nổi bật `pullquote`, chi tiết `details`, HTML tuỳ chỉnh `customHtml` (máy chủ lọc khi người soạn thiếu quyền `unfiltered_html`), mạng xã hội `socialLinks`, văn bản định dạng sẵn `preformatted`; đoạn, tiêu đề, danh sách, danh sách việc, trích dẫn, mã, ảnh, bộ ảnh, video, âm thanh, tệp, bảng, YouTube; từ 1.2: cột `columns` > `column`, nhóm `group`, hộp lưu ý `callout`, nút `button`, nhúng `embed`; đậm, nghiêng, gạch chân, gạch ngang, mã, chỉ số trên/dưới, tô nền, màu chữ, liên kết).
 - `null` = không có: thuộc tính null không được lưu. Thuộc tính khối lõi sai kiểu được ép (`"3"` → `3`, kẹp min/max) hoặc bỏ.
 - **Khối / nút lạ được giữ nguyên** (khối của plugin, kể cả khi plugin đã tắt) — website bỏ qua khối không có renderer, nút lạ trong nội dung soạn thảo vẫn hiện phần chữ bên trong.
 - Giới hạn: lồng tối đa 64 cấp, tối đa 100 000 nút một bài.

@@ -42,6 +42,10 @@ export interface BlockStyle {
 }
 /** Chuẩn hoá `attrs.style`: giữ đúng thứ tự khoá, bỏ giá trị không hợp lệ. Rỗng → undefined. */
 export declare function normalizeStyle(v: unknown): BlockStyle | undefined;
+/** Độ dài / preset khoảng cách hợp lệ → giá trị CSS (preset thành biến); không hợp lệ → undefined. Dùng cho thuộc tính khối như chiều cao khoảng trống. */
+export declare function spacingValue(v: unknown): string | undefined;
+/** Màu hợp lệ (hex/rgb/hsl hoặc preset) → giá trị CSS; không hợp lệ → undefined. */
+export declare function colorCss(v: unknown): string | undefined;
 /** Tên class ổn định theo nội dung style (cùng kiểu dáng → cùng class). */
 export declare function styleClass(style: BlockStyle): string;
 /** CSS của một kiểu dáng: `.cls.cls{…}` + media query cho tablet / mobile + ẩn theo khổ. Rỗng → "". */
