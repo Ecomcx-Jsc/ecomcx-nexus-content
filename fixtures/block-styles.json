@@ -100,6 +100,14 @@
                       "type": "paragraph"
                     }
                   ]
+                },
+                {
+                  "type": "column",
+                  "content": [
+                    {
+                      "type": "paragraph"
+                    }
+                  ]
                 }
               ]
             },
@@ -245,6 +253,14 @@
                 }
               },
               "content": [
+                {
+                  "type": "column",
+                  "content": [
+                    {
+                      "type": "paragraph"
+                    }
+                  ]
+                },
                 {
                   "type": "column",
                   "content": [
