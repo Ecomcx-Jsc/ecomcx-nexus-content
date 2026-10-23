@@ -18,9 +18,13 @@ function outsideWhere(sel: string) {
 }
 
 test("style.css: mọi selector có độ ưu tiên 0 (theme luôn ghi đè được)", () => {
-  const selectors = [...css.matchAll(/([^{}]+)\{/g)].map((m) => m[1].trim()).filter(Boolean);
+  const selectors = [...css.matchAll(/([^{}]+)\{/g)].map((m) => m[1].trim()).filter((s) => s && !s.startsWith("@"));
   assert.ok(selectors.length > 20);
   for (const s of selectors) assert.match(outsideWhere(s), /^[\s>+~]*$/, `selector có độ ưu tiên: ${s}`);
+});
+
+test("style.css: nằm trọn trong @layer ecx-content", () => {
+  assert.match(css.trim(), /^@layer ecx-content \{[\s\S]*\}$/);
 });
 
 test("style.css: bảng có viền và ô trống không co về 0", () => {
