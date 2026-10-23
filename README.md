@@ -43,6 +43,25 @@ Khối không chứa chữ cố định — lấy dữ liệu lúc hiển thị 
 | Danh sách bài | `query` > `postTemplate` (khuôn lặp cho từng bài) + `pagination` + `queryEmpty` | `inherit` (dùng danh sách của trang đang xem), `postType`, `perPage`, `category`, `tag`, `orderBy`, `order`; `layout` (`list`/`grid`), `columns` |
 | Ghép | `templatePart` | `slug` (vd `header`, `footer`), `tagName` |
 
+## Kiểu dáng khối (1.7) — `attrs.style`
+
+Mọi khối (lõi và plugin) có thể mang `attrs.style`:
+
+```jsonc
+"style": {
+  "padding": { "base": "xl", "tablet": "lg", "mobile": { "top": "md", "bottom": "md" } },   // tablet ≤ 1024px, mobile ≤ 640px
+  "margin": { "base": "auto" }, "gap": { "base": "lg" }, "width": { "base": "100%" }, "maxWidth": { "base": "640px" },
+  "fontSize": { "base": "3xl", "mobile": "2xl" }, "lineHeight": { "base": 1.2 }, "fontWeight": "700", "textAlign": { "base": "center" },
+  "color": { "text": "white", "background": "#0f172a" }, "border": { "width": "1px", "style": "dashed", "color": "primary" }, "radius": "12px",
+  "hide": ["mobile"]
+}
+```
+
+- Giá trị: preset của theme (`lg`, `2xl`, `primary` → `var(--ecx-spacing-lg)`, `var(--ecx-font-size-2xl)`, `var(--ecx-color-primary, primary)`) hoặc giá trị CSS đã kiểm (độ dài `px|rem|em|%|vw|vh`, `0`, `auto`, màu hex/rgb/hsl). Giá trị khác bị bỏ khi chuẩn hoá → không chèn được CSS.
+- Một giá trị gọn (`"padding": "lg"`) được chuẩn hoá thành `{ "base": "lg" }`.
+- `styleClass(style)` → class ổn định (`ecx-s-…`), `styleCss(style)` → CSS (`.cls.cls{…}` + media query), `collectStyles([...])` gom CSS cả trang. Website và trình soạn dùng chung.
+- Preset mặc định nằm trong `style.css` (`--ecx-spacing-xs…3xl`, `--ecx-font-size-xs…4xl`, `--ecx-color-primary|muted|surface|white|black`); theme đặt lại biến để đổi.
+
 ## Nhúng theo đường dẫn — `embedInfo`
 
 Khối `embed` chỉ lưu `url` (+ `caption`). `embedInfo(url)` nhận ra nhà cung cấp trong danh sách (YouTube, Vimeo, Loom, Spotify, SoundCloud, TikTok, X, Instagram, Facebook video, CodePen, Figma, Google Maps dạng embed) và **tự dựng** địa chỉ khung từ mã trong đường dẫn — không dùng HTML nhúng do người dùng dán, nên bài viết không chèn được khung tới trang tuỳ ý. Không nhận ra → `null`, website hiện liên kết thường. Trình soạn (xem trước) và website dùng chung hàm này.

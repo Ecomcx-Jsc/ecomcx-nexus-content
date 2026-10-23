@@ -1,0 +1,249 @@
+{
+  "name": "block-styles",
+  "note": "Kiểu dáng khối (1.7): attrs.style của mọi khối — dạng gọn thành theo khổ (base/tablet/mobile), thứ tự khoá cố định, bỏ giá trị không hợp lệ (độ dài lạ, CSS chèn, khổ lạ, chuỗi thay cho object)",
+  "input": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "group",
+              "attrs": {
+                "style": {
+                  "padding": {
+                    "base": "xl",
+                    "tablet": "lg",
+                    "mobile": {
+                      "top": "md",
+                      "bottom": "md",
+                      "left": "1e9px"
+                    }
+                  },
+                  "color": {
+                    "background": "#0f172a",
+                    "text": "white"
+                  },
+                  "radius": "12px",
+                  "hide": [
+                    "tv",
+                    "mobile"
+                  ]
+                }
+              },
+              "content": [
+                {
+                  "type": "heading",
+                  "attrs": {
+                    "level": "2",
+                    "style": {
+                      "fontSize": {
+                        "base": "3xl",
+                        "mobile": "2xl"
+                      },
+                      "textAlign": {
+                        "base": "center",
+                        "mobile": "left"
+                      },
+                      "fontWeight": 800,
+                      "lineHeight": "1.2"
+                    }
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Tiêu đề"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "style": {
+                  "margin": "auto",
+                  "maxWidth": "640px",
+                  "width": "calc(100%)"
+                }
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Đoạn"
+                }
+              ]
+            },
+            {
+              "type": "columns",
+              "attrs": {
+                "style": {
+                  "gap": {
+                    "base": "xl",
+                    "mobile": "sm"
+                  },
+                  "border": {
+                    "width": "1px",
+                    "style": "dashed",
+                    "color": "rgb(0,0,0)"
+                  }
+                }
+              },
+              "content": [
+                {
+                  "type": "column",
+                  "content": [
+                    {
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "demo/hero",
+              "attrs": {
+                "title": "x",
+                "style": {
+                  "padding": "red;}body{display:none"
+                }
+              }
+            },
+            {
+              "type": "image",
+              "attrs": {
+                "src": "/a.png",
+                "style": "padding:10px"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "expected": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "group",
+              "attrs": {
+                "style": {
+                  "padding": {
+                    "base": "xl",
+                    "tablet": "lg",
+                    "mobile": {
+                      "top": "md",
+                      "bottom": "md"
+                    }
+                  },
+                  "color": {
+                    "text": "white",
+                    "background": "#0f172a"
+                  },
+                  "radius": "12px",
+                  "hide": [
+                    "mobile"
+                  ]
+                }
+              },
+              "content": [
+                {
+                  "type": "heading",
+                  "attrs": {
+                    "level": 2,
+                    "style": {
+                      "fontSize": {
+                        "base": "3xl",
+                        "mobile": "2xl"
+                      },
+                      "lineHeight": {
+                        "base": 1.2
+                      },
+                      "fontWeight": "800",
+                      "textAlign": {
+                        "base": "center",
+                        "mobile": "left"
+                      }
+                    }
+                  },
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Tiêu đề"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "style": {
+                  "margin": {
+                    "base": "auto"
+                  },
+                  "maxWidth": {
+                    "base": "640px"
+                  }
+                }
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Đoạn"
+                }
+              ]
+            },
+            {
+              "type": "columns",
+              "attrs": {
+                "style": {
+                  "gap": {
+                    "base": "xl",
+                    "mobile": "sm"
+                  },
+                  "border": {
+                    "width": "1px",
+                    "style": "dashed",
+                    "color": "rgb(0,0,0)"
+                  }
+                }
+              },
+              "content": [
+                {
+                  "type": "column",
+                  "content": [
+                    {
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "demo/hero",
+              "attrs": {
+                "title": "x"
+              }
+            },
+            {
+              "type": "image",
+              "attrs": {
+                "src": "/a.png"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 import { blockNodeSpec, migrateBlockAttrs, type BlockDefinition } from "./block.js";
 import { migrateContent } from "./migrate.js";
 import { CORE_MARKS, CORE_NODES, normalizeAttrs, type NodeSpec } from "./schema.js";
+import { normalizeStyle } from "./style.js";
 import { CONTENT_VERSION, type Block, type ContentDoc, type RichMark, type RichNode } from "./types.js";
 
 export interface NormalizeOptions {
@@ -92,7 +93,12 @@ function normalizeNode(node: unknown, depth: number, state: State): RichNode | n
     catch (e) { state.issues.push(`block ${node.type}: migrate failed (${(e as Error).message}) — kept as is`); }
   }
   const attrs = normalizeAttrs(raw, state.nodes[node.type]?.attrs);
-  if (attrs) out.attrs = attrs;
+  // Kiểu dáng của khối (mọi khối, kể cả khối plugin): chỉ giữ giá trị hợp lệ
+  if (attrs && "style" in attrs) {
+    const style = normalizeStyle(attrs.style);
+    if (style) attrs.style = style; else delete attrs.style;
+  }
+  if (attrs && Object.keys(attrs).length) out.attrs = attrs;
   if (Array.isArray(node.content)) {
     const children: RichNode[] = [];
     for (const c of node.content) {

@@ -1,6 +1,7 @@
 import { blockNodeSpec, migrateBlockAttrs } from "./block.js";
 import { migrateContent } from "./migrate.js";
 import { CORE_MARKS, CORE_NODES, normalizeAttrs } from "./schema.js";
+import { normalizeStyle } from "./style.js";
 import { CONTENT_VERSION } from "./types.js";
 const empty = () => ({ version: CONTENT_VERSION, blocks: [] });
 const isObj = (v) => !!v && typeof v === "object" && !Array.isArray(v);
@@ -95,7 +96,15 @@ function normalizeNode(node, depth, state) {
         }
     }
     const attrs = normalizeAttrs(raw, state.nodes[node.type]?.attrs);
-    if (attrs)
+    // Kiểu dáng của khối (mọi khối, kể cả khối plugin): chỉ giữ giá trị hợp lệ
+    if (attrs && "style" in attrs) {
+        const style = normalizeStyle(attrs.style);
+        if (style)
+            attrs.style = style;
+        else
+            delete attrs.style;
+    }
+    if (attrs && Object.keys(attrs).length)
         out.attrs = attrs;
     if (Array.isArray(node.content)) {
         const children = [];
