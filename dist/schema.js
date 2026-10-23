@@ -68,7 +68,7 @@ export const CORE_NODES = {
     pullquote: { attrs: { citation: s() } },
     details: { attrs: { summary: s(), open: b({ default: false }) } },
     customHtml: { attrs: { html: s() } },
-    socialLinks: { attrs: { links: { type: "json", default: [] }, size: s({ enum: ["small", "medium", "large"], default: "medium" }), align: s({ enum: ["left", "center", "right"] }) } },
+    socialLinks: { attrs: { links: { type: "json", default: [] }, size: s({ enum: ["small", "medium", "large"], default: "medium" }), align: s({ enum: ["left", "center", "right"] }), showLabels: b({ default: false }) } },
     tableOfContents: { attrs: { title: s(), maxLevel: i({ min: 2, max: 4, default: 3 }) } },
     preformatted: {},
     // Khối động (1.6): lấy dữ liệu lúc hiển thị theo ngữ cảnh (website, trang đang xem, bài trong vòng lặp) — dùng trong template
