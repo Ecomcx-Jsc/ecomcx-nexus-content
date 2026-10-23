@@ -90,7 +90,7 @@
   :where(.ecx-media-text-media) :where(img) { display: block; width: 100%; height: auto; border-radius: 8px; }
   :where(.ecx-media-text-content) > :where(:first-child) { margin-top: 0; }
   @media (max-width: 640px) {
-    :where(.ecx-media-text.is-stack), :where(.ecx-media-text.is-stack.is-right) { grid-template-columns: 1fr; }
+    :where(.ecx-media-text.is-stack, .ecx-media-text.is-stack.is-right) { grid-template-columns: 1fr; }
     :where(.ecx-media-text.is-stack.is-right) > :where(.ecx-media-text-media) { order: 0; }
   }
   :where(.ecx-pullquote) { margin: 2em 0; padding: 1.5em 0; border-block: 3px solid currentColor; text-align: center; }
