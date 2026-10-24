@@ -1,6 +1,6 @@
 # Publish @ecomcx/nexus-content to npm when a version tag is pushed (v1.2.3 = version in package.json).
 # Trusted Publishing (OIDC): no npm token - configure on npmjs.com: package > Settings > Trusted Publisher >
-# GitHub Actions, repository Ecomcx-Jsc/ecomcx-nexus-content, workflow publish.yml. The first version is published by hand.
+# GitHub Actions, repository Ecomcx-Jsc/ecx-nexus-content, workflow publish.yml. The first version is published by hand.
 # Install: npm i @ecomcx/nexus-content (code imports "@ecomcx/nexus-content").
 name: Publish npm
 

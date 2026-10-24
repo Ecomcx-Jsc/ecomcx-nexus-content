@@ -1,7 +1,7 @@
 {
   "name": "@ecomcx/nexus-content",
   "version": "1.13.0",
-  "description": "Định dạng nội dung của Ecomcx Nexus CMS: kiểu dữ liệu, schema khối lõi, chuẩn hoá, nâng phiên bản và bộ fixture hợp đồng — dùng chung cho trình soạn, website và máy chủ, không phụ thuộc trình soạn nào.",
+  "description": "Định dạng nội dung của ECX Nexus CMS: kiểu dữ liệu, schema khối lõi, chuẩn hoá, nâng phiên bản và bộ fixture hợp đồng — dùng chung cho trình soạn, website và máy chủ, không phụ thuộc trình soạn nào.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
@@ -27,9 +27,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ecomcx-Jsc/ecomcx-nexus-content.git"
+    "url": "git+https://github.com/Ecomcx-Jsc/ecx-nexus-content.git"
   },
-  "homepage": "https://github.com/Ecomcx-Jsc/ecomcx-nexus-content#readme",
+  "homepage": "https://github.com/Ecomcx-Jsc/ecx-nexus-content#readme",
   "publishConfig": {
     "access": "public",
     "provenance": true

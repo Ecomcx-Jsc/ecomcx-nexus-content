@@ -81,11 +81,11 @@ Khối `embed` chỉ lưu `url` (+ `caption`). `embedInfo(url)` nhận ra nhà c
 ## Cài
 
 ```bash
-npm install github:Ecomcx-Jsc/ecomcx-nexus-content#semver:^1
+npm install github:Ecomcx-Jsc/ecx-nexus-content#semver:^1
 ```
 
 ```json
-"dependencies": { "@ecomcx/nexus-content": "github:Ecomcx-Jsc/ecomcx-nexus-content#semver:^1" }
+"dependencies": { "@ecomcx/nexus-content": "github:Ecomcx-Jsc/ecx-nexus-content#semver:^1" }
 ```
 
 `#semver:^1` = mọi bản 1.x (tag `v1.*`): `npm update @ecomcx/nexus-content` lấy bản mới nhất, bản 2.0 (đổi làm vỡ API) phải chủ động đổi. `package-lock.json` ghi đúng commit đã cài. `dist/` được commit sẵn trong repo (npm 11 bỏ qua `prepare` của gói GitHub khi cài với `--ignore-scripts` — Builder của CMS cài như vậy). Không phụ thuộc thư viện nào lúc chạy — dùng được trong trình duyệt, Node, Next.js, công cụ dòng lệnh.
