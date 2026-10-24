@@ -1,6 +1,6 @@
-# @ecomcx/nexus-content — định dạng nội dung của CMS
+# @ecomcx/ecomweb-content — định dạng nội dung của CMS
 
-Chuẩn lưu nội dung bài viết/trang của CMS, **không phụ thuộc trình soạn**. Trình soạn (hiện là TipTap/ProseMirror trong `@ecomcx/nexus-editor`) chuyển sang chuẩn này; website (`@ecomcx/nexus-theme-sdk`) và máy chủ (`ContentFormat.cs`) chỉ đọc chuẩn này. Đổi hay thay trình soạn không đổi dữ liệu đã lưu, website vẫn chạy.
+Chuẩn lưu nội dung bài viết/trang của CMS, **không phụ thuộc trình soạn**. Trình soạn (hiện là TipTap/ProseMirror trong `@ecomcx/ecomweb-editor`) chuyển sang chuẩn này; website (`@ecomcx/ecomweb-theme-sdk`) và máy chủ (`ContentFormat.cs`) chỉ đọc chuẩn này. Đổi hay thay trình soạn không đổi dữ liệu đã lưu, website vẫn chạy.
 
 CMS lưu **dữ liệu**, HTML vẽ lúc hiển thị → theme đổi giao diện khối thì bài cũ tự theo, không có HTML cũ lệch với mã mới.
 
@@ -81,19 +81,19 @@ Khối `embed` chỉ lưu `url` (+ `caption`). `embedInfo(url)` nhận ra nhà c
 ## Cài
 
 ```bash
-npm install github:Ecomcx-Jsc/ecx-nexus-content#semver:^1
+npm install github:Ecomcx-Jsc/ecomweb-content#semver:^1
 ```
 
 ```json
-"dependencies": { "@ecomcx/nexus-content": "github:Ecomcx-Jsc/ecx-nexus-content#semver:^1" }
+"dependencies": { "@ecomcx/ecomweb-content": "github:Ecomcx-Jsc/ecomweb-content#semver:^1" }
 ```
 
-`#semver:^1` = mọi bản 1.x (tag `v1.*`): `npm update @ecomcx/nexus-content` lấy bản mới nhất, bản 2.0 (đổi làm vỡ API) phải chủ động đổi. `package-lock.json` ghi đúng commit đã cài. `dist/` được commit sẵn trong repo (npm 11 bỏ qua `prepare` của gói GitHub khi cài với `--ignore-scripts` — Builder của CMS cài như vậy). Không phụ thuộc thư viện nào lúc chạy — dùng được trong trình duyệt, Node, Next.js, công cụ dòng lệnh.
+`#semver:^1` = mọi bản 1.x (tag `v1.*`): `npm update @ecomcx/ecomweb-content` lấy bản mới nhất, bản 2.0 (đổi làm vỡ API) phải chủ động đổi. `package-lock.json` ghi đúng commit đã cài. `dist/` được commit sẵn trong repo (npm 11 bỏ qua `prepare` của gói GitHub khi cài với `--ignore-scripts` — Builder của CMS cài như vậy). Không phụ thuộc thư viện nào lúc chạy — dùng được trong trình duyệt, Node, Next.js, công cụ dòng lệnh.
 
 ## Dùng
 
 ```ts
-import { normalizeContent, contentText, wordCount, isSafeUrl } from "@ecomcx/nexus-content";
+import { normalizeContent, contentText, wordCount, isSafeUrl } from "@ecomcx/ecomweb-content";
 
 const { doc, issues } = normalizeContent(input);   // {version, blocks}, cây TipTap thuần hoặc chuỗi HTML
 contentText(doc);                                  // chữ thuần (tìm kiếm, tóm tắt)
@@ -102,10 +102,10 @@ contentText(doc);                                  // chữ thuần (tìm kiếm
 ## Giao diện nền — `style.css`
 
 ```ts
-import "@ecomcx/nexus-content/style.css";
+import "@ecomcx/ecomweb-content/style.css";
 ```
 
-CSS tối thiểu cho nội dung nằm trong phần tử có class `ecx-content` (bảng có viền, danh sách, trích dẫn, mã, ảnh, chú thích, khung nhúng, khối bố cục) và form `ecx-form`. Website (`PostContent`) và trình soạn (`@ecomcx/nexus-editor`) cùng nạp file này → theme không viết CSS cho nội dung vẫn hiển thị đúng, trình soạn và website giống nhau.
+CSS tối thiểu cho nội dung nằm trong phần tử có class `ecx-content` (bảng có viền, danh sách, trích dẫn, mã, ảnh, chú thích, khung nhúng, khối bố cục) và form `ecx-form`. Website (`PostContent`) và trình soạn (`@ecomcx/ecomweb-editor`) cùng nạp file này → theme không viết CSS cho nội dung vẫn hiển thị đúng, trình soạn và website giống nhau.
 
 - Nằm trong `@layer ecx-content`, mọi selector trong `:where()` → CSS của theme luôn thắng, kể cả CSS có layer (Tailwind). Nạp file này **trước** CSS của theme. Ứng dụng có sẵn layer (vd Tailwind trong admin) mà muốn nền thắng reset của mình thì khai báo `@layer ecx-content;` sau các layer đó.
 - Đổi màu bằng biến: `--ecx-border`, `--ecx-muted`, `--ecx-accent` (mặc định `--primary`), `--ecx-surface`, `--ecx-code-bg`, `--ecx-code-fg`, `--ecx-button-bg`, `--ecx-button-fg`. Không đặt thì màu suy ra từ màu chữ (`currentColor`) → hợp cả nền sáng lẫn tối.
@@ -118,7 +118,7 @@ Khai báo một lần, dùng ở cả trình soạn (admin) lẫn website — đ
 
 ```ts
 // blocks.ts
-import { defineBlock } from "@ecomcx/nexus-content";
+import { defineBlock } from "@ecomcx/ecomweb-content";
 export const callout = defineBlock({
   name: "lien-he/callout", title: "Hộp lưu ý", icon: "info", keywords: "luu y callout", content: "blocks",
   attributes: {
@@ -128,8 +128,8 @@ export const callout = defineBlock({
 });
 ```
 
-- Admin (`@ecomcx/nexus-admin-sdk`): `registerBlock(callout)` → trình soạn tự có mục slash menu, khung khối, form cài đặt sinh từ `attributes` (không viết TipTap).
-- Website (`@ecomcx/nexus-theme-sdk`): `definePlugin({ blocks: { [callout.name]: Callout }, blockTypes: [callout] })` — `Callout` nhận `data` (thuộc tính đã chuẩn hoá) và `children` (nội dung bên trong).
+- Admin (`@ecomcx/ecomweb-admin-sdk`): `registerBlock(callout)` → trình soạn tự có mục slash menu, khung khối, form cài đặt sinh từ `attributes` (không viết TipTap).
+- Website (`@ecomcx/ecomweb-theme-sdk`): `definePlugin({ blocks: { [callout.name]: Callout }, blockTypes: [callout] })` — `Callout` nhận `data` (thuộc tính đã chuẩn hoá) và `children` (nội dung bên trong).
 - `content`: `"none"` (khối nguyên), `"inline"` (một dòng chữ), `"blocks"` (chứa khối khác).
 - Đổi cấu trúc thuộc tính: tăng `version`, thêm `migrate[bản-cũ]` — bài đã lưu được nâng khi đọc (lưu kèm `_v`). Migrate lỗi → giữ nguyên dữ liệu.
 - Plugin tắt / gỡ: dữ liệu khối nằm nguyên trong bài; website hiện phần chữ bên trong (nếu có), bật lại là hiện như cũ.
@@ -140,10 +140,10 @@ export const callout = defineBlock({
 
 | Bên | Test |
 |---|---|
-| `@ecomcx/nexus-content` | `normalizeContent(input) == expected`, chuẩn hoá lần hai không đổi |
+| `@ecomcx/ecomweb-content` | `normalizeContent(input) == expected`, chuẩn hoá lần hai không đổi |
 | Máy chủ (core) | `ContentFormatTests` — cùng fixture (bản chép ở `backend/tests/Cms.Tests/ContentFixtures/` của repo core) |
-| Website (`@ecomcx/nexus-theme-sdk`) | vẽ mỗi fixture ra đúng HTML đã duyệt (`test/snapshots/`) |
-| Trình soạn (`@ecomcx/nexus-editor`) | mở fixture rồi xuất lại → chuẩn hoá ra đúng `expected` |
+| Website (`@ecomcx/ecomweb-theme-sdk`) | vẽ mỗi fixture ra đúng HTML đã duyệt (`test/snapshots/`) |
+| Trình soạn (`@ecomcx/ecomweb-editor`) | mở fixture rồi xuất lại → chuẩn hoá ra đúng `expected` |
 
 Đổi quy tắc: sửa `src/` + `ContentFormat.cs` + fixture cùng lúc. Thay trình soạn: chỉ cần qua bộ test của trình soạn.
 
@@ -155,4 +155,4 @@ npm test        # biên dịch + node --test
 npm run build   # dist/ — commit cùng src/ (npm test báo lỗi nếu dist/ cũ)
 ```
 
-Phát hành: tăng `version` (MAJOR.MINOR.PATCH — chỉ tăng MAJOR khi làm vỡ API), commit, `git tag vX.Y.Z && git push --tags`; bên dùng chạy `npm update @ecomcx/nexus-content`.
+Phát hành: tăng `version` (MAJOR.MINOR.PATCH — chỉ tăng MAJOR khi làm vỡ API), commit, `git tag vX.Y.Z && git push --tags`; bên dùng chạy `npm update @ecomcx/ecomweb-content`.
