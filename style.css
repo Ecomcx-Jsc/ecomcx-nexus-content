@@ -1,5 +1,5 @@
 /*
- * Giao diện nền cho nội dung (@cms/content) — dùng chung cho website và trình soạn.
+ * Giao diện nền cho nội dung (@ecomcx/nexus-content) — dùng chung cho website và trình soạn.
  * Nằm trong @layer ecx-content + mọi selector trong :where() → CSS của theme (có layer hay không) luôn thắng.
  * Nạp file này trước CSS của theme để layer ecx-content đứng thấp nhất.
  * Theme đổi màu bằng biến: --ecx-border, --ecx-muted, --ecx-accent, --ecx-surface, --ecx-code-bg, --ecx-code-fg.
