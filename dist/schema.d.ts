@@ -23,7 +23,7 @@ export interface NodeSpec {
  */
 export declare const CORE_NODES: Record<string, NodeSpec>;
 /** Khối động: nội dung lấy theo ngữ cảnh lúc hiển thị (website, trang, bài trong vòng lặp). */
-export declare const DYNAMIC_NODES: readonly ["siteTitle", "siteLogo", "siteTagline", "navigation", "search", "languageSwitcher", "copyright", "postTitle", "postContent", "postExcerpt", "featuredImage", "postDate", "postAuthor", "postTerms", "comments", "query", "postTemplate", "pagination", "queryEmpty", "templatePart"];
+export declare const DYNAMIC_NODES: readonly ["siteTitle", "siteLogo", "siteTagline", "navigation", "search", "languageSwitcher", "copyright", "postTitle", "postContent", "postExcerpt", "featuredImage", "postDate", "postAuthor", "postTerms", "comments", "query", "postTemplate", "pagination", "queryEmpty", "templatePart", "syncedPattern"];
 export declare const CORE_MARKS: Record<string, NodeSpec>;
 /** Ép giá trị theo mô tả. Trả về undefined = bỏ thuộc tính (dùng mặc định). */
 export declare function coerceAttr(spec: AttrSpec, value: unknown): unknown;

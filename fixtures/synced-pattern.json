@@ -1,0 +1,80 @@
+{
+  "name": "synced-pattern",
+  "note": "Mẫu đồng bộ (1.13): ref ép kiểu số (\"12\" → 12); ref sai kiểu / null thì bỏ thuộc tính (khối giữ nguyên, website không vẽ)",
+  "input": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "syncedPattern",
+              "attrs": {
+                "ref": "12"
+              }
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Giữa"
+                }
+              ]
+            },
+            {
+              "type": "syncedPattern",
+              "attrs": {
+                "ref": "abc"
+              }
+            },
+            {
+              "type": "syncedPattern",
+              "attrs": {
+                "ref": null
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "expected": {
+    "version": 1,
+    "blocks": [
+      {
+        "id": "main",
+        "type": "richtext",
+        "data": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "syncedPattern",
+              "attrs": {
+                "ref": 12
+              }
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Giữa"
+                }
+              ]
+            },
+            {
+              "type": "syncedPattern"
+            },
+            {
+              "type": "syncedPattern"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

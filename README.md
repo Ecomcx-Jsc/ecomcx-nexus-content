@@ -42,6 +42,7 @@ Khối không chứa chữ cố định — lấy dữ liệu lúc hiển thị 
 | Bài / trang đang xem (hoặc bài trong vòng lặp) | `postTitle`, `postContent`, `postExcerpt`, `featuredImage`, `postDate`, `postAuthor`, `postTerms`, `comments` | `level`, `link`, `moreText`, `size`, `aspect`, `avatar`, `taxonomy`, `separator` |
 | Danh sách bài | `query` > `postTemplate` (khuôn lặp cho từng bài) + `pagination` + `queryEmpty` | `inherit` (dùng danh sách của trang đang xem), `postType`, `perPage`, `category`, `tag`, `orderBy`, `order`; `layout` (`list`/`grid`), `columns` |
 | Ghép | `templatePart` | `slug` (vd `header`, `footer`), `tagName` |
+| Mẫu đồng bộ | `syncedPattern` | `ref` (id của mẫu — sửa mẫu gốc thì mọi chỗ dùng đổi theo) |
 
 ## Kiểu dáng khối (1.7) — `attrs.style`
 

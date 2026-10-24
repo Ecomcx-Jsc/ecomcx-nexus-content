@@ -97,12 +97,14 @@ export const CORE_NODES = {
     pagination: {},
     queryEmpty: {},
     templatePart: { attrs: { slug: s(), tagName: s({ enum: ["div", "header", "footer", "aside", "section"], default: "div" }) } },
+    /** Mẫu đồng bộ: tham chiếu tới mẫu (id) — sửa mẫu gốc thì mọi chỗ dùng đổi theo. */
+    syncedPattern: { attrs: { ref: i({ min: 1 }) } },
 };
 /** Khối động: nội dung lấy theo ngữ cảnh lúc hiển thị (website, trang, bài trong vòng lặp). */
 export const DYNAMIC_NODES = [
     "siteTitle", "siteLogo", "siteTagline", "navigation", "search", "languageSwitcher", "copyright",
     "postTitle", "postContent", "postExcerpt", "featuredImage", "postDate", "postAuthor", "postTerms", "comments",
-    "query", "postTemplate", "pagination", "queryEmpty", "templatePart",
+    "query", "postTemplate", "pagination", "queryEmpty", "templatePart", "syncedPattern",
 ];
 export const CORE_MARKS = {
     bold: {}, italic: {}, underline: {}, strike: {}, code: {}, subscript: {}, superscript: {},
